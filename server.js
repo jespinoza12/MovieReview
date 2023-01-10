@@ -9,8 +9,6 @@ app.use(express.urlencoded({limit: '100mb', extended: true}))
 app.use(cors())
 
 require('dotenv').config()
-const { MongoClient } = require('mongodb');
-
 mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.MONGO, {
     useNewUrlParser: true,
