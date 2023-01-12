@@ -1,4 +1,5 @@
 import './App.css';
+import logo from './public/logo.png';
 
 function App() {
   const refreshPage = ()=>{
@@ -8,7 +9,10 @@ function App() {
   return (
     <div className="App">
       <nav>
-        This is the navabar
+        
+        <a>
+          <img className="imgLogo" src={logo} alt='review-It Logo'/>
+        </a>
       </nav>
       <div>
         please login 
