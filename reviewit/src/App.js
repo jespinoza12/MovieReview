@@ -8,37 +8,41 @@ function App() {
 
   return (
     <div className="App">
-      <nav>
-        
-        <a>
-          <img className="imgLogo" src={logo} alt='review-It Logo'/>
-        </a>
-      </nav>
-      <div>
-        please login 
-      </div>
-      <div>
-        <div>
-          name
+      <div id="container">
+        <div id='navBar1' className='box'>
+          <span className="navItem">
+            <img onClick={() => {refreshPage()}} id="navLogo" src={logo} alt="logo"/>
+          </span>
+          <span className="navItem">
+            <a>Welcome --Insert Username Here--</a>
+          </span>
         </div>
         <div>
-          last name
+          please login 
         </div>
         <div>
-          email
+          <div>
+            name
+          </div>
+          <div>
+            last name
+          </div>
+          <div>
+            email
+          </div>
+          <div>
+            password
+          </div>
+          <div>
+            re-enter password
+          </div>
+          <div>
+            login
+          </div>
+          <span>
+            signup?
+          </span>
         </div>
-        <div>
-          password
-        </div>
-        <div>
-          re-enter password
-        </div>
-        <div>
-          login
-        </div>
-        <span>
-          signup?
-        </span>
       </div>
     </div>
   );
