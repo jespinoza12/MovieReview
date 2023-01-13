@@ -1,0 +1,24 @@
+@media screen and (max-width: 5000px) {
+  body {
+    color: white;
+    background-color: #000000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    align-items: center;
+    align-content: center;
+    user-select: none;
+    font-family: "Titillium Web", "Kdam Thmor Pro";
+  }
+.box {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  /* border: 1px solid #fff; */
+  flex: 1;
+}
+}

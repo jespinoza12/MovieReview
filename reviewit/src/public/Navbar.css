@@ -1,0 +1,35 @@
+.navItem {
+  display: inline-block;
+}
+span > img {
+  cursor: pointer;
+}
+#navLogo {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+}
+#navBar {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 10px;
+  padding-top: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  height: fit-content;
+  width: -moz-fit-content;
+  /* width: 100%; */
+  background-color: #1f1c1c;
+}
+.navItemInfo {
+  margin-left: auto;
+  margin-right: 0px;
+  padding-top: 1em;
+  padding-right: 1em;
+  font-weight: bold;
+  max-width: fit-content;
+  color: #ffffff;
+  text-align: center;
+  float: right;
+}
