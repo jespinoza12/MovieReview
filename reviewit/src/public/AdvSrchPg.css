@@ -30,12 +30,12 @@ input {
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
 }
-#AdvSrchLink {
+#SrchLink {
   color: #ffc31f;
   font-size: 15px;
   
 }
-#advSrchBtn {
+#srchBtn {
   width: auto;
   height: auto;
   background-color: #bbb1b1;

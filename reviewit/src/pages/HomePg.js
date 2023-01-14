@@ -15,14 +15,15 @@ function HomePg() {
       backgroundSize: 'cover',
       backgroundRrepeat: 'no-repeat'
       }}>
-      <div>
-        <p id="search">Search</p>
-        <input type="search" placeholder="Search here"/>
-        <input id="submitBtn" type="submit" value="Submit" /> <br/>
+      {/* <div id='searchBox'> */}
+        <div id="search">Search</div>
+        {/* <label id="search">Search </label> */}
+        <input type="search" placeholder="Search Movie by Title"/>
+        <input id="submitBtn" type="submit" value="Search" /> <br/>
         <span id="AdvSrchLink">
           Advanced Search 
         </span>
-      </div>
+      {/* </div> */}
     </div>
     </>
   );

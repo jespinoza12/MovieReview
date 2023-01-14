@@ -33,3 +33,8 @@ span > img {
   text-align: center;
   float: right;
 }
+#container {
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
