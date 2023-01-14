@@ -10,15 +10,10 @@
   height: auto;
 }
 #loginBox{
-  /* border-radius: 20px; */
   background-color: #1f1c1c;
-  /* max-width: 500px; */
   width: 35%;
   margin: auto;
   justify-content: center;
-  
-
-  
 }
 #logSigText{
   margin-top: 0px ;
@@ -41,15 +36,11 @@ form {
   margin: 20px;
 }
 form > input {
-  /* color: white; */
   padding: 10px;
   width: 50%;
   font-size: 15px;
   background-color: #bbb1b1;
   border-style: none;
-  /* border: 1px #ffc31f solid; */
-  
-
 }
 #submitBtn {
   width: 100px;
@@ -58,7 +49,6 @@ form > input {
   background-color: #ffc31f;
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
-  /* font-size: 10px; */
 }
 #signInLink {
   color: #bbb1b1;
