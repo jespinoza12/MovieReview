@@ -1,0 +1,46 @@
+#container {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  display: block;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+#search {
+  height: 50%;
+  font-size: 50px;
+  margin: 0px;
+  width: 60%;
+  margin-bottom: -12px;
+}
+input {
+  padding: 10px;
+  width: 45%;
+  font-size: 15px;
+  background-color: #bbb1b1;
+  border-style: none;
+}
+#submitBtn {
+  width: 80px;
+  height: auto;
+  background-color: #ffc31f;
+  border-radius: 5px;
+  font-family: "Titillium Web", "Kdam Thmor Pro";
+}
+#AdvSrchLink {
+  color: #ffc31f;
+  font-size: 15px;
+  
+}
+#advSrchBtn {
+  width: auto;
+  height: auto;
+  background-color: #bbb1b1;
+  border-radius: 5px;
+  font-family: "Titillium Web", "Kdam Thmor Pro";
+  font-size: 12px;
+}
