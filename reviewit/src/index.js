@@ -11,38 +11,27 @@ import { createBrowserRouter,   RouterProvider,} from "react-router-dom";
 
 import reportWebVitals from './reportWebVitals';
 
-const HPg = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePg />,
     errorElement: <ErrorPage />,
   },
-]);
-
-const login = createBrowserRouter([
-  {
-    path: "/login",
-    element: <LoginPg />,
-    errorElement: <ErrorPage />,
-
-  },
-]);
-
-const register = createBrowserRouter([
   {
     path: "/register",
     element: <SignupPg />,
-    errorElement: <ErrorPage />,
-
+  },
+  {
+    path: "/login",
+    element: <LoginPg />,
   },
 ]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-        <RouterProvider router={HPg} />
-        <RouterProvider router={login} />
-        <RouterProvider router={register} />
+        <RouterProvider router={router} />
   </React.StrictMode>
 );
 
