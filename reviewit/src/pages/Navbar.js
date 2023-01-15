@@ -6,13 +6,20 @@ function Navbar() {
 		window.location.href='/';
 	}
 
+  const login = ()=>{
+    window.location.href='/login';
+  }
+
+  const loggedIn = false;
   return (
     <div className='box' id='navBar'>
       <span className="navItem">
         <img onClick={() => {refreshPage()}} id="navLogo" src={logo} alt="logo"/>
       </span>
       <span className="navItem navItemInfo">
-        <a>Welcome --Insert Username Here--</a>
+        {
+          loggedIn ? <a>Welcome --Insert Username Here--</a> : <a onClick={login}>Login</a>
+        }
       </span>
     </div>
   );

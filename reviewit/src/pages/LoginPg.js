@@ -2,6 +2,13 @@ import '../public/LoginPg.css';
 import logo from '../logo.png';
 
 function LoginPg() {
+
+  function register (){
+    window.location.href='/register';
+  }
+
+  
+
   return (
     <>
       <div id="container">
@@ -19,7 +26,7 @@ function LoginPg() {
             </form>
           </div>
         </div>
-        <span id="signInLink">
+        <span id="signInLink" onClick={register}>
           Not a user? Sign Up 
         </span>
       </div>
