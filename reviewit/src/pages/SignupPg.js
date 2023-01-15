@@ -20,7 +20,11 @@ function SignupPg() {
 
   function onSubmit (e){
     e.preventDefault();
-    console.log({fname: fname.current.value, lname: lname.current.value, street: street.current.value, city: city.current.value, state: state.current.value, zip_code: zip_code.current.value, email: email.current.value, phone: phone.current.value, password: password.current.value, password2: password2.current.value});
+    console.log({fname: fname.current.value, lname: lname.current.value, 
+      street: street.current.value, city: city.current.value, 
+      state: state.current.value, zip_code: zip_code.current.value, 
+      email: email.current.value, phone: phone.current.value, 
+      password: password.current.value, password2: password2.current.value});
 
   }
 
