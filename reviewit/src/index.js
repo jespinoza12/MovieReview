@@ -7,6 +7,8 @@ import HomePg from './pages/HomePg';
 import AdvSrchPg from './pages/AdvSrchPg';
 import ReviewPg from './pages/ReviewPg';
 import ErrorPage from './pages/Error-page';
+import AdvSrchResPg from './pages/AdvSrchResPg';
+import Admin from './pages/Admin';
 import { createBrowserRouter,   RouterProvider,} from "react-router-dom";
 
 import reportWebVitals from './reportWebVitals';
@@ -28,6 +30,18 @@ const router = createBrowserRouter([
   {
     path: "/advancedSearch",
     element: <AdvSrchPg />,
+  },
+  {
+    path: "/advancedResults",
+    element: <AdvSrchResPg />,
+  },
+  {
+    path: "/movieResult",
+    element: <ReviewPg />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
   },
 ]);
 
