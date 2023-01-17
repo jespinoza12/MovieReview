@@ -33,7 +33,7 @@ input {
 #SrchLink {
   color: #ffc31f;
   font-size: 15px;
-  
+  cursor: pointer;
 }
 #srchBtn {
   width: auto;

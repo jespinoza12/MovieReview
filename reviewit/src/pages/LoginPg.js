@@ -3,6 +3,10 @@ import logo from '../logo.png';
 import {useRef} from 'react';
 function LoginPg() {
 
+  function home (){
+    window.location.href='/';
+  }
+
   function register (){
     window.location.href='/register';
   }
@@ -15,14 +19,10 @@ function LoginPg() {
     console.log({email: emailref.current.value, password: passwordref.current.value});
   }
 
-
-
-  
-
   return (
     <>
       <div id="container">
-      <img id="loginLogo" src={logo} alt="logo"/>
+      <img id="loginLogo" src={logo} alt="logo" onClick={home}/>
         <div id="loginBox" className='box'>
           <h1 id="logSigText">Login</h1>
           <div id='form'>

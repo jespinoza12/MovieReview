@@ -25,6 +25,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginPg />,
   },
+  {
+    path: "/advancedSearch",
+    element: <AdvSrchPg />,
+  },
 ]);
 
 

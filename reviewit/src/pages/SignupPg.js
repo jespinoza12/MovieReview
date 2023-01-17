@@ -3,6 +3,10 @@ import logo from '../logo.png';
 import {useRef} from 'react';
 function SignupPg() {
 
+  function home (){
+    window.location.href='/';
+  }
+
   const login = ()=>{
     window.location.href='/login';
   }
@@ -31,7 +35,7 @@ function SignupPg() {
   return (
     <>
       <div id="container">
-      <img id="signupLogo" src={logo} alt="logo"/>
+      <img id="signupLogo" src={logo} alt="logo" onClick={home}/>
         <div id="signupBox" className='box'>
           <h1 id="logSigText">Sign Up</h1>
           <div id='form'>
