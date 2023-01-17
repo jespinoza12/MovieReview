@@ -29,11 +29,12 @@ input {
   background-color: #ffc31f;
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
+  cursor: pointer;
 }
 #AdvSrchLink {
   color: #ffc31f;
   font-size: 15px;
-  
+  cursor: pointer;
 }
 #advSrchBtn {
   width: auto;
@@ -42,6 +43,7 @@ input {
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
   font-size: 12px;
+  cursor: pointer;
 }
 #searchBox {
   position: relative;

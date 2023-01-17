@@ -32,7 +32,7 @@ function LoginPg() {
               <label>Password:</label>
               <input ref={passwordref} type="text" name="Password"/><br/>
               <br/>
-              <input id="submitBtn" type="submit" value="Submit" />
+              <input id="submitBtn" type="submit" value="Login" />
             </form>
           </div>
         </div>

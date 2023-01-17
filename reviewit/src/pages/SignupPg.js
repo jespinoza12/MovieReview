@@ -57,7 +57,7 @@ function SignupPg() {
               <label>Re-enter Password:</label>
               <input ref={password2} type="text" name="Password"/><br/>
               <br/>
-              <button type='submit'>Submit</button>
+              <input id="submitBtn" type="submit" value="Sign Up" />
             </form>
           </div>
         </div>

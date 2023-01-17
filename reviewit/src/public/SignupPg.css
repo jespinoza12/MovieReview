@@ -8,6 +8,7 @@
   max-width: 300px;
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 #signupBox{
   background-color: #1f1c1c;
@@ -49,8 +50,10 @@ form > input {
   background-color: #ffc31f;
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
+  cursor: pointer;
 }
 #signInLink {
   color: #bbb1b1;
   font-size: 12px;
+  cursor: pointer;
 }

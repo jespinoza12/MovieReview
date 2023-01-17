@@ -8,6 +8,7 @@ span > img {
   max-width: 120px;
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 #navBar {
   padding-left: 100px;
@@ -20,6 +21,7 @@ span > img {
   height: fit-content;
   width: -moz-fit-content;
   /* width: 100%; */
+  border: none;
   background-color: #1f1c1c;
 }
 .navItemInfo {
@@ -32,6 +34,7 @@ span > img {
   color: #ffffff;
   text-align: center;
   float: right;
+  cursor: pointer;
 }
 #container {
   align-items: center;

@@ -42,6 +42,7 @@ input {
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
   font-size: 12px;
+  cursor: pointer;
 }
 #searchBox {
   position: relative;
