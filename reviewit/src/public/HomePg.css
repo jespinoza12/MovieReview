@@ -13,8 +13,13 @@
   height: 50%;
   font-size: 50px;
   margin: 0px;
+  padding: 0px;
   width: 60%;
   margin-bottom: -12px;
+}
+span {
+  justify-content: center;
+  align-content: center;
 }
 input {
   padding: 10px;
@@ -45,8 +50,11 @@ input {
   font-size: 12px;
   cursor: pointer;
 }
-#searchBox {
-  position: relative;
-  top: 40%;
-  max-width: fit-content;
+.searchBox {
+  /* position: relative; */
+  /* top: 40%; */
+  /* max-width: fit-content; */
+}
+.searchBox > #search {
+  align-items: flex-start;
 }
