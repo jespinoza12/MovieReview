@@ -31,7 +31,6 @@ function LoginPg() {
               <input ref={emailref} type="text" name="Email"/><br/>  
               <label>Password:</label>
               <input ref={passwordref} type="text" name="Password"/><br/>
-              <br/>
               <input id="submitBtn" type="submit" value="Login" />
             </form>
           </div>

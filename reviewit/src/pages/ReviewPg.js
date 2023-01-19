@@ -1,31 +1,74 @@
 import Navbar from "./Navbar";
 import '../public/ReviewPg.css';
+import {useRef} from 'react';
 
 function ReviewPg() {
+
+  const emailref = useRef();
+
+  function onSubmit (e){
+    e.preventDefault();
+    console.log({email: emailref.current.value});
+  }
+
   return(
     <>
       <Navbar />
-      <div id='container' class='box'>
-        <div id='box1' class='box'>Box 1</div>
-        <div id='box2' class='box'>
-            <div id= 'innerMenu1' class='box'>Menu 1</div>
-            <div id= 'innerMenu2' class='box'>Menu 2</div>
-            <div id= 'innerMenu3' class='box'>Menu 3</div>
-            <div id= 'innerMenu4' class='box'>Menu 4</div>
-            <div id= 'innerMenu5' class='box'>Menu 5</div>
-        </div>
-        <div id='box3' class='box'>
-            <div id= 'menu1' class='box'>
-                <div id= 'innerMenu1' class='box'>Menu 1</div>
-                <div id= 'innerMenu2' class='box'>Menu 2</div>
-                <div id= 'innerMenu3' class='box'>Menu 3</div>
-                <div id= 'innerMenu4' class='box'>Menu 4</div>
+        <div className='outContainer'>
+            <div className="container innerContainer">
+              <div className="box">
+    	          <div className='inner-col box' id='article'>
+                  <div className="box out-image">
+                    <div className="box abov-image">
+                      image
+                    </div>
+                    <div className="box und-image">
+                      info about the movie
+                    </div>
+                  </div>
+                  <div className="box">
+                    <div className='box desc'>
+                      Description will go here
+                    </div>
+                  </div>
+
+                </div>
+  		          <div className='inner-col box' id='footer'>
+                  <div className='box'>
+                    <h1 className='box'>Reviews</h1>
+                    <div className='box'>
+                      <div className="table">
+                        <div>id</div>
+                        <div>reviewHere</div>
+                        <div>Stars</div>
+                      </div>
+                        
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="inner-col2 box"> */}
+                <div className="inner-col2 box" id='aside'>
+                  <div className='box'>
+                    {/* <div className='box'> */}
+                      <h1 className='box'>Title</h1>
+                    {/* </div> */}
+                    
+                    <div className='box form' onSubmit={onSubmit}>
+                      
+                        <label>Email:</label><br/>
+                        <input id='emailText' ref={emailref} type="text" name="Email"/><br/>
+                        <label>Review:</label><br/>
+                        <textarea id='reviewText' type="text" name="Review"/><br/>
+                        <input id="submitBtn" type="submit" value="Login" />
+                      
+                    </div>
+                  </div>
+                </div>
+              {/* </div> */}
             </div>
-            <div id= 'menu2' class='box'>Box 4</div>
-            <div id= 'menu3' class='box'>Box 5</div>
         </div>
-        <div id='box4' class='box'>Box 6</div>
-    </div>  
     </>
   );
 }

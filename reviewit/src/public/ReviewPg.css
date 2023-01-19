@@ -1,42 +1,104 @@
+.container {
+  display: flex;
+  min-height: 100%;
+  max-width: 100%;
+  padding-top: 10px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-right: 100px;
+  padding-left: 100px;
+  flex-direction: row;
+  flex: 1;
+}
+label {
+  font-size: 20px;
+  width: 100px;
+  display: inline-block;
+
+}
+.form{
+  padding: 0px;
+  margin: 0px;
+  min-height: 800px;
+}
+#reviewText, #emailText{
+  width: 265px;
+  max-width: 100%;
+  
+  font-size: 15px;
+  background-color: #bbb1b1;
+  border-style: none;
+}
+#reviewText {
+  min-height: 550px;
+}
 .box {
-  margin-top: 5px;
+  /* margin-top: 5px;
   margin-bottom: 5px;
   padding-bottom: 5px;
-  padding-top: 5px;
+  padding-top: 5px; */
+  margin: 5px;
+  padding: 5px;
   border: 1px solid #fff;
   flex: 1;
 }
-
-#box3, #box2 {
-  display: flex;
-  flex-direction: row;
+.outContainer {
+  background-color: #000000;
 }
-
-/* .box {
-  border: 1px solid #000;
+.inner-col {
   flex: 1;
+  flex-direction: row;
+  max-width: 100%;
+  min-height: 500px;
+  display: flex;
+}
+.desc {
+  max-width: 100%;
+  min-height: 95%;
+}
+#submitBtn {
+  max-width: 100px;
+  margin: 5px;
+  padding: 5px;
+  background-color: #ffc31f;
+  border-radius: 5px;
+  font-family: "Titillium Web", "Kdam Thmor Pro";
+  cursor: pointer;
+}
+.inner-col2 {
+  flex: 1;
+  max-width: 25%;
+}
+.out-image {
+  max-width: 35%;
+  min-height: 500px;
+  flex-direction: column;
+}
+.abov-image {
+  max-width: 100%;
+  min-height: 350px;
+}
+.und-image {
+  max-width: 100%;
+  min-height: 110px;
+}
+/* #article{
+  background-color: cadetblue;
 } */
-
-#box1 {
-  min-height: 125px;
+#footer, #aside, .innerContainer {
+  background-color: #1f1c1c;
 }
-
-#box2 {
-  min-height: 75px;
+h1 {
+  color: #ffc31f;
 }
-
-#box3 {
-  min-height: 450px
+.inner-col {
+  background-color: #ffc31f;
 }
-
-#box4 {
-  min-height: 75px;
-}
-
-#menu1 {
-  max-width: 150px;
-}
-
-#menu3 {
-  max-width: 125px;
+.table {
+  flex-direction: row;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
 }
