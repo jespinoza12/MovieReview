@@ -19,6 +19,7 @@ function SignupPg() {
   const zip_code = useRef();
   const email = useRef();
   const phone = useRef();
+  const username = useRef();
   const password = useRef();
   const password2 = useRef();
 
@@ -28,6 +29,7 @@ function SignupPg() {
       street: street.current.value, city: city.current.value, 
       state: state.current.value, zip_code: zip_code.current.value, 
       email: email.current.value, phone: phone.current.value, 
+      username: username.current.vaue,
       password: password.current.value, password2: password2.current.value});
 
   }
@@ -55,7 +57,9 @@ function SignupPg() {
               <label>Email:</label>
               <input ref={email} type="text" name="Email"/><br/>  
               <label>Phone:</label>
-              <input ref={phone} type="text" name="Phone #"/><br/> 
+              <input ref={phone} type="text" name="Phone #"/><br/>
+              <label>Username:</label>
+              <input ref={username} type="text" name="Username"/><br/> 
               <label>Password:</label>
               <input ref={password} type="text" name="Password"/><br/>
               <label>Re-enter Password:</label>

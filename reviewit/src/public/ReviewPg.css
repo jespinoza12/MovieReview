@@ -21,7 +21,7 @@ label {
   margin: 0px;
   min-height: 800px;
 }
-#reviewText, #emailText{
+#reviewText, #usernameText{
   width: 265px;
   max-width: 100%;
   
@@ -39,11 +39,11 @@ label {
   padding-top: 5px; */
   margin: 5px;
   padding: 5px;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   flex: 1;
 }
-.outContainer {
-  background-color: #000000;
+.container {
+  background-color: black;
 }
 .inner-col {
   flex: 1;
@@ -52,9 +52,13 @@ label {
   min-height: 500px;
   display: flex;
 }
+#article {
+  color: black;
+}
 .desc {
   max-width: 100%;
   min-height: 95%;
+  border-left: 2px solid white;
 }
 #submitBtn {
   max-width: 100px;
@@ -77,19 +81,17 @@ label {
 .abov-image {
   max-width: 100%;
   min-height: 350px;
+  border-bottom: 2px solid white;
 }
 .und-image {
   max-width: 100%;
   min-height: 110px;
 }
-/* #article{
-  background-color: cadetblue;
-} */
+.reviewBox, .reviewsBox {
+  border-bottom: 2px solid #ffc31f;
+}
 #footer, #aside, .innerContainer {
   background-color: #1f1c1c;
-}
-h1 {
-  color: #ffc31f;
 }
 .inner-col {
   background-color: #ffc31f;
@@ -101,4 +103,7 @@ h1 {
   justify-content: space-between;
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid white;
 }
