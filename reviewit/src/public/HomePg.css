@@ -53,7 +53,9 @@ input {
 .searchBox {
   /* position: relative; */
   /* top: 40%; */
-  /* max-width: fit-content; */
+  min-width: 100%;
+  position: absolute;
+  top: 35%;
 }
 .searchBox > #search {
   align-items: flex-start;

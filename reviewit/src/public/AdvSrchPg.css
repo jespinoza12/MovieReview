@@ -44,8 +44,11 @@ input {
   font-size: 12px;
   cursor: pointer;
 }
-#searchBox {
-  position: relative;
-  top: 40%;
-  max-width: fit-content;
+.searchBox {
+  min-width: 100%;
+  position: absolute;
+  top: 35%;
+}
+.searchBox > #search {
+  align-items: flex-start;
 }
