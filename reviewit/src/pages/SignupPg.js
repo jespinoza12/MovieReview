@@ -31,7 +31,6 @@ function SignupPg() {
       email: email.current.value, phone: phone.current.value, 
       username: username.current.vaue,
       password: password.current.value, password2: password2.current.value});
-
   }
 
   return (

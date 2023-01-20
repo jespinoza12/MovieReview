@@ -41,9 +41,7 @@ function ReviewPg() {
                         <div>id</div>
                         <div>reviewHere</div>
                         <div>Stars</div>
-                      </div>
-                        
-                      
+                      </div>     
                     </div>
                   </div>
                 </div>
@@ -64,8 +62,6 @@ function ReviewPg() {
                         <StarRating /><br/>
                         <br/>
                         <input id="submitBtn" type="submit" value="Submit" />
-                        {/* <Rating name="simple-controlled"/> */}
-                        
                     </div>
                   </div>
                 </div>
