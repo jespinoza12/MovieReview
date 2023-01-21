@@ -25,8 +25,8 @@ function SignupPg() {
     phone: "",
     password: "",
     password2: ""
-  })
-
+  });
+  
   const handleChange = e => {
     const { name, value } = e.target
     setUser({
