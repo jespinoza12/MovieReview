@@ -14,7 +14,6 @@ label {
   font-size: 20px;
   width: 100px;
   display: inline-block;
-
 }
 .form{
   padding: 0px;
@@ -24,7 +23,6 @@ label {
 #reviewText, #usernameText{
   width: 265px;
   max-width: 100%;
-  
   font-size: 15px;
   background-color: #bbb1b1;
   border-style: none;
