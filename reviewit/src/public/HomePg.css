@@ -1,11 +1,4 @@
 #container {
-  /* height: 100%;
-  width: 100%; */
-  /* align-items: center;
-  align-content: center;
-  text-align: center;
-  justify-content: center; */
-  /* display: block; */
   padding-top: 0px;
   margin-top: 0px;
 }
@@ -13,8 +6,13 @@
   height: 50%;
   font-size: 50px;
   margin: 0px;
+  padding: 0px;
   width: 60%;
   margin-bottom: -12px;
+}
+span {
+  justify-content: center;
+  align-content: center;
 }
 input {
   padding: 10px;
@@ -45,8 +43,11 @@ input {
   font-size: 12px;
   cursor: pointer;
 }
-#searchBox {
-  position: relative;
-  top: 40%;
-  max-width: fit-content;
+.searchBox {
+  min-width: 100%;
+  position: absolute;
+  top: 35%;
+}
+.searchBox > #search {
+  align-items: flex-start;
 }
