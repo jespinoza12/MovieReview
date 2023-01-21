@@ -2,21 +2,26 @@ import Navbar from "./Navbar";
 import "../public/Admin.css";
 
 function Admin() {
+  
+  function simpleSearch (){
+    window.location.href='/';
+  }
 
   return(
     <>
       <Navbar />
-      <div className='inner-col box' id='footer'>
-        <div className='box'>
-          <h1 className='box reviewsBox'>Users</h1>
-          <div className='box'>
-            <div className="table">
-              <div>id</div>
-              <div>reviewHere</div>
-              <input id="submitBtn" type="submit" value="Delete" />
-            </div>     
-          </div>
-        </div>
+      <div id="container">
+        {/* <div id='searchBox'> */}
+          <div id="search">Advanced Search</div>
+          {/* <label id="search">Search </label> */}
+          <input type="search" placeholder="Search Movie by Actor"/>
+          <input id="submitBtn" type="submit" value="Search" /> <br/>
+          <input type="search" placeholder="Search Movie by Genre"/>
+          <input id="submitBtn" type="submit" value="Search" /> <br/>
+          <span id="SrchLink" onClick={simpleSearch}>
+            Simple Search 
+          </span>
+        {/* </div> */}
       </div>
     </>
   );
