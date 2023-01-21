@@ -32,7 +32,7 @@ function SignupPg() {
     setUser({
         ...user,
         [name]: value
-    })
+    });
 }
 
   const register = () => {
