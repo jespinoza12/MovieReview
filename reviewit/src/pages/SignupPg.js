@@ -1,5 +1,5 @@
 import '../public/SignupPg.css';
-import logo from '../logo.png';
+import logo from '../logo1.png';
 import {useState} from 'react';
 import axios from 'axios';
 function SignupPg() {
