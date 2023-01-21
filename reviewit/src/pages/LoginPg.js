@@ -1,5 +1,5 @@
 import '../public/LoginPg.css';
-import logo from '../logo.png';
+import logo from '../logo1.png';
 import {useRef} from 'react';
 function LoginPg() {
 

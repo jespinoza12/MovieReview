@@ -1,5 +1,5 @@
 import '../public/Navbar.css';
-import logo from '../logo.png';
+import logo from '../logo1.png';
 
 function Navbar() {
   const refreshPage = ()=>{
