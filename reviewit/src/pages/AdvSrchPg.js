@@ -20,7 +20,7 @@ function AdvSrchPg() {
         backgroundSize: 'cover',
         backgroundRrepeat: 'no-repeat'
         }}>
-        <div className='searchBox'>
+        {/* <div id='searchBox'> */}
           <div id="search">Advanced Search</div>
           {/* <label id="search">Search </label> */}
           <input type="search" placeholder="Search Movie by Actor"/>
@@ -30,7 +30,7 @@ function AdvSrchPg() {
           <span id="SrchLink" onClick={simpleSearch}>
             Simple Search 
           </span>
-        </div>
+        {/* </div> */}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import '../public/SignupPg.css';
 import logo from '../logo.png';
-import {useRef} from 'react';
+import {useState} from 'react';
+import axios from 'axios';
 function SignupPg() {
 
   function home (){
@@ -11,27 +12,46 @@ function SignupPg() {
     window.location.href='/login';
   }
 
-  const fname = useRef();
-  const lname = useRef();
-  const street = useRef();
-  const city = useRef();
-  const state = useRef();
-  const zip_code = useRef();
-  const email = useRef();
-  const phone = useRef();
-  const username = useRef();
-  const password = useRef();
-  const password2 = useRef();
+
+  const [message, setMessage] = useState("")
+  const [user, setUser] = useState({
+    fname: "",
+    lname: "",
+    street: "",
+    city: "",
+    state: "",
+    zip_code: "",
+    email: "",
+    phone: "",
+    password: "",
+    password2: ""
+  })
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setUser({
+        ...user,
+        [name]: value
+    })
+}
+
+  const register = () => {
+    const {fname, lname, street, city, state, zip_code, email, phone, password, password2 } = user
+    if( fname && lname && street && city && state && zip_code && phone && email && password && (password === password2)){
+        axios.post("http://localhost:9292/items/register", user)
+        .then( res => {
+            setMessage(res.data.message)
+        })
+    } else {
+        setMessage("Oops")
+    }
+}
 
   function onSubmit (e){
     e.preventDefault();
-    console.log({fname: fname.current.value, lname: lname.current.value, 
-      street: street.current.value, city: city.current.value, 
-      state: state.current.value, zip_code: zip_code.current.value, 
-      email: email.current.value, phone: phone.current.value, 
-      username: username.current.vaue,
-      password: password.current.value, password2: password2.current.value});
+    register();
   }
+
 
   return (
     <>
@@ -40,29 +60,28 @@ function SignupPg() {
         <div id="signupBox" className='box'>
           <h1 id="logSigText">Sign Up</h1>
           <div id='form'>
+            <label>{message}</label>
             <form onSubmit={onSubmit}>
               <label>Fist Name:</label>
-              <input ref={fname} type="text" name="First Name"/><br/> 
+              <input value={user.fname} onChange={handleChange} type="text" name="fname"/><br/> 
               <label>Last Name:</label>
-              <input ref={lname} type="text" name="Last Name"/><br/>   
+              <input value={user.lname} onChange={handleChange}type="text" name="lname"/><br/>   
               <label>Street:</label>
-              <input ref={street} type="text" name="Street"/><br/>  
+              <input value={user.street} onChange={handleChange}type="text" name="street"/><br/>  
               <label>City:</label>
-              <input ref={city} type="text" name="city"/><br/> 
+              <input value={user.city} onChange={handleChange} type="text" name="city"/><br/> 
               <label>State</label>
-              <input ref={state} type="text" name="State"/><br/> 
+              <input value={user.state} onChange={handleChange} type="text" name="state"/><br/> 
               <label>Zipcode:</label>
-              <input ref={zip_code} type="text" name="zipcode"/><br/> 
+              <input value={user.zip_code} onChange={handleChange} type="text" name="zip_code"/><br/> 
               <label>Email:</label>
-              <input ref={email} type="text" name="Email"/><br/>  
+              <input value={user.email} onChange={handleChange} type="text" name="email"/><br/>  
               <label>Phone:</label>
-              <input ref={phone} type="text" name="Phone #"/><br/>
-              <label>Username:</label>
-              <input ref={username} type="text" name="Username"/><br/> 
+              <input value={user.phone} onChange={handleChange} type="text" name="phone"/><br/> 
               <label>Password:</label>
-              <input ref={password} type="text" name="Password"/><br/>
+              <input value={user.password} onChange={handleChange} type="text" name="password"/><br/>
               <label>Re-enter Password:</label>
-              <input ref={password2} type="text" name="Password"/><br/>
+              <input value={user.password2} onChange={handleChange} type="text" name="password2"/><br/>
               <br/>
               <input id="submitBtn" type="submit" value="Sign Up" />
             </form>
