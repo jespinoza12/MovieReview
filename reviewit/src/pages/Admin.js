@@ -12,6 +12,8 @@ function Admin() {
           <div className='box'>
             <div className="table">
               <div>id</div>
+              <div>username</div>
+              <div>image of moview</div>
               <div>reviewHere</div>
               <input id="submitBtn" type="submit" value="Delete" />
             </div>     
