@@ -1,12 +1,12 @@
 import Navbar from "./Navbar";
 import "../public/HomePg.css";
 import background from "../background2.png"
-
 function HomePg() {
   
   function advancedSearch (){
     window.location.href='/advancedSearch';
   }
+
 
   return (
     <>

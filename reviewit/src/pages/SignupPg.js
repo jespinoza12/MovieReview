@@ -8,7 +8,7 @@ function SignupPg() {
     window.location.href='/';
   }
 
-  const login = ()=>{
+  const login = ()=> {
     window.location.href='/login';
   }
 

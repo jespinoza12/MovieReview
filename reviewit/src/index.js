@@ -13,44 +13,47 @@ import { createBrowserRouter,   RouterProvider,} from "react-router-dom";
 
 import reportWebVitals from './reportWebVitals';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePg />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/register",
-    element: <SignupPg />,
-  },
-  {
-    path: "/login",
-    element: <LoginPg />,
-  },
-  {
-    path: "/advancedSearch",
-    element: <AdvSrchPg />,
-  },
-  {
-    path: "/advancedResults",
-    element: <AdvSrchResPg />,
-  },
-  {
-    path: "/movieResult",
-    element: <ReviewPg />,
-  },
-  {
-    path: "/admin",
-    element: <Admin />,
-  },
-]);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePg />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/register",
+      element: <SignupPg />,
+    },
+    {
+      path: "/login",
+      element: <LoginPg/>,
+    },
+    {
+      path: "/advancedSearch",
+      element: <AdvSrchPg />,
+    },
+    {
+      path: "/advancedResults",
+      element: <AdvSrchResPg />,
+    },
+    {
+      path: "/movieResult",
+      element: <ReviewPg />,
+    },
+    {
+      path: "/admin",
+      element: <Admin />,
+    },
+  ]);
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-        <RouterProvider router={router} />
-  </React.StrictMode>
-);
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+      <React.StrictMode>
+            <RouterProvider router={router} />
+      </React.StrictMode>
+    );
+    reportWebVitals();
 
-reportWebVitals();
+  
+
