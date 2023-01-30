@@ -7,9 +7,14 @@ const AdvancedResults = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    setMovies(JSON.parse(localStorage.getItem("movies") || "[]"));
+    if (localStorage.getItem("genreSearchRes") == null) {
+      setMovies(JSON.parse(localStorage.getItem("actorSearchRes")));
+    }else if (localStorage.getItem("actorSearchRes") == null) {
+      setMovies(JSON.parse(localStorage.getItem("genreSearchRes")));
+    }
+    console.log(movies)
     setSearchTerm(localStorage.getItem("searchTerm"));
-  }, []);
+  }, [], [movies]);
 
   const handleSubmit = (movie) => {
     localStorage.setItem("clickedMovie", JSON.stringify(movie));
