@@ -1,7 +1,7 @@
 import Navbar from "../Navbar/Navbar";
 import "./ReviewPg.css";
 import { useRef } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import StarRating from "./StarsRating";
 
 const ReviewPg = () => {
