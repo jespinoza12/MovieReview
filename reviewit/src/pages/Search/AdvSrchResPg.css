@@ -1,6 +1,7 @@
 .box {
   margin: 5px;
   padding: 5px;
+  max-width: 95%;
   /* border: 1px solid #fff; */
   flex: 1;
 }
@@ -10,22 +11,31 @@
   max-width: 100%;
   min-height: 500px;
   display: flex;
+  justify-content: center;
   background-color: #ffc31f;
 }
+
+
 .reviewsBox {
   border-bottom: 2px solid #ffc31f;
+  display: block;
 }
+
 .table {
+  text-align: center;
+  justify-content: space-between;
   flex-direction: row;
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  overflow: scroll;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid white;
 }
+
+
 #submitBtn {
   max-width: 100px;
   margin: 5px;

@@ -1,27 +1,26 @@
-import Navbar from "./Navbar";
-import "../public/Admin.css";
+import Navbar from "../Navbar/Navbar";
+import "./Admin.css";
 
-function Admin() {
-
-  return(
+const Admin = () => {
+  return (
     <>
       <Navbar />
-      <div className='inner-col box' id='footer'>
-        <div className='box'>
-          <h1 className='box reviewsBox'>Users</h1>
-          <div className='box'>
+      <div className="inner-col box" id="footer">
+        <div className="box">
+          <h1 className="box reviewsBox">Users</h1>
+          <div className="box">
             <div className="table">
               <div>id</div>
               <div>username</div>
               <div>image of moview</div>
               <div>reviewHere</div>
               <input id="submitBtn" type="submit" value="Delete" />
-            </div>     
+            </div>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Admin;
