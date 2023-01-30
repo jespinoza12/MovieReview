@@ -14,6 +14,22 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
 
+function isAdmin() {
+  if (localStorage.getItem("role") === "Admin") {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+function isLoggedIn() {
+  if (localStorage.getItem("token") !== null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +54,7 @@ const router = createBrowserRouter([
   {
     path: "/advancedSearch",
     element: <AdvSrchPg />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/searchResults",
@@ -51,20 +68,26 @@ const router = createBrowserRouter([
   },
   {
     path: "/movieResult",
-    element: <ReviewPg />,
+    element: isLoggedIn() ? <ReviewPg /> : <LoginPg/>,
     errorElement: <ErrorPage />,
   },
   {
     path: "/admin",
-    element: <Admin />,
+    element: isAdmin() ? <Admin /> : <HomePg />,
     errorElement: <ErrorPage />,
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
-reportWebVitals();
+
+
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+      <React.StrictMode>
+            <RouterProvider router={router} />
+      </React.StrictMode>
+    );
+    reportWebVitals();
+
+  
+
