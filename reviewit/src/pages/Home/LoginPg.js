@@ -1,10 +1,10 @@
-import "../public/LoginPg.css";
-import logo from "../logo.png";
+import "./LoginPg.css";
+import logo from "../Assets/logo.png";
 import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 
-function LoginPg() {
+const LoginPg = () => {
   const [message, setMessage] = useState("");
   const [hidden, setHidden] = useState(true);
 
@@ -27,7 +27,7 @@ function LoginPg() {
       ...user,
       [name]: value,
     });
-    console.log(user)
+    console.log(user);
   };
 
   const login = () => {
@@ -106,6 +106,6 @@ function LoginPg() {
       </div>
     </>
   );
-}
+};
 
 export default LoginPg;
