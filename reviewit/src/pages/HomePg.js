@@ -1,12 +1,29 @@
 import Navbar from "./Navbar";
 import "../public/HomePg.css";
 import background from "../background2.png"
+// import { useState, useEffect } from "react";
+// import axios from "axios";
 function HomePg() {
   
   function advancedSearch (){
     window.location.href='/advancedSearch';
   }
 
+  // const [user, setUser] = useState(null);
+
+  // useEffect(() => {
+  //     const token = localStorage.getItem('token');
+  //     if (token) {
+  //         axios.get('http://localhost:9292/items/user', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+  //             .then(response => {
+  //                 console.log(response.data.message);
+  //                 setUser(response.data);
+  //             })
+              
+  //     }
+  // }, []);
+
+  
 
   return (
     <>
