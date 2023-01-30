@@ -1,17 +1,18 @@
 import Navbar from "../Navbar/Navbar";
 import "./ReviewPg.css";
-import { useRef } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StarRating from "./StarsRating";
 
 const ReviewPg = () => {
-  const usernameref = useRef();
   const [clickedMovie, setClickedMovie] = useState([]);
+
+  useEffect(() => {
+    setClickedMovie(JSON.parse(localStorage.getItem("clickedMovie")));
+    console.log(clickedMovie)
+  }, []);
 
   function onSubmit(e) {
     e.preventDefault();
-    setClickedMovie(JSON.parse(localStorage.getItem("clickedMovie") || "[]"));
-    console.log({ username: usernameref.current.value });
   }
 
   return (
@@ -65,7 +66,6 @@ const ReviewPg = () => {
                 <br />
                 <input
                   id="usernameText"
-                  ref={usernameref}
                   type="text"
                   name="Username"
                 />

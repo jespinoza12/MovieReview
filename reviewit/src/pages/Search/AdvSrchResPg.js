@@ -16,9 +16,14 @@ const AdvancedResults = () => {
     setSearchTerm(localStorage.getItem("searchTerm"));
   }, [], [movies]);
 
+  
+  const movieReview = () => {
+    window.location.href = "/movieResult";
+  };
+
   const handleSubmit = (movie) => {
     localStorage.setItem("clickedMovie", JSON.stringify(movie));
-    window.location.href("/movieResult");
+    movieReview();
   };
 
   return (
