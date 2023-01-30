@@ -9,6 +9,10 @@ const HomePg = () => {
     setInput(event.target.value);
   };
 
+  const advancedSearch = () => {
+    window.location.href = "/advancedSearch";
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -48,6 +52,9 @@ const HomePg = () => {
             onChange={handleSearchTermChange}
           />
           <input id="submitBtn" type="submit" value="Search" /> <br />
+          <span id="AdvSrchLink" onClick={advancedSearch}>
+          Advanced Search 
+        </span>
         </form>
       </div>
     </>
