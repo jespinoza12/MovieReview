@@ -25,14 +25,14 @@ const ReviewPg = () => {
               <div className="box out-image">
                 <div className="box abov-image">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${clickedMovie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w300${clickedMovie.poster_path}`}
                     alt={clickedMovie.title}
                   />
                 </div>
                 <div className="box">
                   <h1>{clickedMovie.title}</h1>
-                  <h1>StarRating: 5/5</h1>
-                  <h1 className="box year">{clickedMovie.release_date}</h1>
+                  <h3>StarRating: 5/5</h3>
+                  <h4 id="movieStars">{clickedMovie.release_date}</h4>
                 </div>
               </div>
               <div className="box">
