@@ -7,14 +7,13 @@
   font-size: 50px;
   margin: 0px;
   padding: 0px;
-  width: 60%;
+  width: 10%;
   margin-bottom: -12px;
 }
 span {
   justify-content: center;
   align-content: center;
 }
-
 input {
   padding: 10px;
   width: 45%;
@@ -45,10 +44,11 @@ input {
   cursor: pointer;
 }
 .searchBox {
-  min-width: 98.7%;
+  min-width: 98.5%;
   position: absolute;
   top: 35%;
 }
 .searchBox > #search {
   align-items: flex-start;
+  justify-content: flex-start;
 }

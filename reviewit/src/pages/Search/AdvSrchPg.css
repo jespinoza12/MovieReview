@@ -16,6 +16,11 @@ input, select, option{
   background-color: #bbb1b1;
   border-style: none;
 }
+#SimpSrchLink {
+  color: #ffc31f;
+  font-size: 15px;
+  cursor: pointer;
+}
 input {
   left: 10%;
 }

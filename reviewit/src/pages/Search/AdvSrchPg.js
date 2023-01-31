@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./AdvSrchPg.css";
 import background from "../Assets/background2.png";
+import HomePg from "../Home/HomePg";
 
 const AdvSrchPg = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
+
+  const simpleSearch = () => {
+    window.location.href = "/";
+  };
 
   useEffect(() => {
     fetch(
@@ -134,6 +139,9 @@ const AdvSrchPg = () => {
           </select>
           <input id="submitBtn" type="submit" value="Search" />
       </form>
+      <span id="SimpSrchLink" onClick={simpleSearch}>
+        Simple Search 
+      </span>
       </div>
       <br/>
       </div>

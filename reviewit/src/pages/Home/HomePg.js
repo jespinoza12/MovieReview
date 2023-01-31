@@ -43,7 +43,8 @@ const HomePg = () => {
           backgroundSize: "cover",
         }}
       >
-        <form className="searchBox" onSubmit={handleSubmit}>
+      <div className="searchBox">
+        <form onSubmit={handleSubmit}>
           <div id="search">Search</div>
           <input
             type="search"
@@ -56,6 +57,7 @@ const HomePg = () => {
             Advanced Search 
           </span>
         </form>
+      </div>
       </div>
     </>
   );
