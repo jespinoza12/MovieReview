@@ -42,7 +42,7 @@ const AdvancedResults = () => {
                   </div>
                 ))
               ) : (
-                <h1>Bruh</h1>
+                <h1></h1>
               )}
             </div>
           </div>

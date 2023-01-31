@@ -53,8 +53,8 @@ const HomePg = () => {
           />
           <input id="submitBtn" type="submit" value="Search" /> <br />
           <span id="AdvSrchLink" onClick={advancedSearch}>
-          Advanced Search 
-        </span>
+            Advanced Search 
+          </span>
         </form>
       </div>
     </>

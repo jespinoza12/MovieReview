@@ -45,7 +45,7 @@ input {
   cursor: pointer;
 }
 .searchBox {
-  min-width: 100%;
+  min-width: 98.7%;
   position: absolute;
   top: 35%;
 }
