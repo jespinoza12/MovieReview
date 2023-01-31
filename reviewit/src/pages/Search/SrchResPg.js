@@ -29,7 +29,7 @@ const AdvancedResults = () => {
                   <div className="resultCard" key={movie.id}>
                     <img
                       className="img"
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                       alt={movie.title}
                     />
                     <div>{movie.title}</div>
@@ -42,7 +42,7 @@ const AdvancedResults = () => {
                   </div>
                 ))
               ) : (
-                <h1></h1>
+                <h1>bruh</h1>
               )}
             </div>
           </div>
