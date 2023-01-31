@@ -97,49 +97,45 @@ const AdvSrchPg = () => {
         id="container"
         style={{
           backgroundImage: `url(${background})`,
-          backgorundRepeat: "no-repeat",
+          backgroundRepeat: "no-repeat",
           width: "100%",
-          height: "92vh",
+          height: "90vh",
           backgroundPosition: "center",
           backgroundSize: "cover",
-          backgroundRrepeat: "no-repeat",
         }}
       >
-        <div className="searchBox">
-          <div id="search center">Advanced Search</div>
-          <label>Search by Actor</label>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="First name"
-              onChange={handleFnameChange}
-              value={fname}
-            />
-            <input
-              type="text"
-              placeholder="Last name"
-              onChange={handleLnameChange}
-              value={lname}
-            />
-            <div></div>
-            <input id="submitBtn" type="submit" value="Search" />
-          </form>
-
-          <br />
-          <label>Search by Genre</label>
-          <form onSubmit={handleGenreSubmit}>
-            <select onChange={handleGenreChange} value={selectedGenre}>
+      <div id="searchBox">
+      <form onSubmit={handleSubmit}>
+          <div id="search">Advanced Search</div>
+          <div className="searchSubtitle">Search by Actor</div>
+          <input className="actorInput"
+            type="text"
+            placeholder="First Name"
+            value={fname}
+            onChange={handleFnameChange}
+          />
+          <input className="actorInput"
+            type="text"
+            placeholder="Last Name"
+            value={lname}
+            onChange={handleLnameChange}
+          />
+          <input id="submitBtn" type="submit" value="Search" /> <br />
+      </form>
+      <form onSubmit={handleGenreSubmit}>
+        <div className="searchSubtitle">Searh by Genre</div>
+          <select onChange={handleGenreChange} value={selectedGenre}>
               <option value="">Select genre</option>
               {genres?.map((genre) => (
                 <option key={genre.id} value={JSON.stringify(genre)}>
                   {genre.name}
                 </option>
               ))}
-            </select>
-            <br />
-            <input id="submitBtn" type="submit" value="Search" />
-          </form>
-        </div>
+          </select>
+          <input id="submitBtn" type="submit" value="Search" />
+      </form>
+      </div>
+      <br/>
       </div>
     </>
   );

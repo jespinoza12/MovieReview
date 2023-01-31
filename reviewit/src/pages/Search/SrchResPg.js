@@ -42,11 +42,7 @@ const AdvancedResults = () => {
                   </div>
                 ))
               ) : (
-<<<<<<< Updated upstream
-                <h1>Bruh</h1>
-=======
                 <h1>bruh</h1>
->>>>>>> Stashed changes
               )}
             </div>
           </div>
