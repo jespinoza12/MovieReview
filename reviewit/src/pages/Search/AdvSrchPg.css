@@ -6,15 +6,22 @@
   height: 50%;
   font-size: 50px;
   margin: 0px;
-  width: 60%;
+  width: 70%;
   margin-bottom: -12px;
 }
-input {
+input, select, option{
   padding: 10px;
-  width: 45%;
+  width: 50%;
   font-size: 15px;
   background-color: #bbb1b1;
   border-style: none;
+}
+input {
+  left: 10%;
+}
+.actorInput {
+  margin-left: 5px;
+  max-width: 23.5%;
 }
 #submitBtn {
   width: 80px;
@@ -23,25 +30,17 @@ input {
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
 }
-#SrchLink {
+.searchSubtitle {
   color: #ffc31f;
   font-size: 15px;
-  cursor: pointer;
+  width: 55%;
 }
-#srchBtn {
-  width: auto;
-  height: auto;
-  background-color: #bbb1b1;
-  border-radius: 5px;
-  font-family: "Titillium Web", "Kdam Thmor Pro";
-  font-size: 12px;
-  cursor: pointer;
-}
-.searchBox {
-  max-width: 100%;
+#searchBox{
+  min-width: 98.5%;
   position: absolute;
-  top: 35%;
+  top: 25%;
 }
-.searchBox > #search {
+#searchBox{
   align-items: flex-start;
+  justify-content: left;
 }
