@@ -46,9 +46,9 @@ const ReviewPg = () => {
                 <h1 className="box reviewsBox">Reviews</h1>
                 <div className="box">
                   <div className="table">
-                    <div>id</div>
-                    <div>reviewHere</div>
-                    <div>Stars</div>
+                    <div id="reviewPageReviewId">id</div>
+                    <div id="reviewPageUserReview">reviewHere</div>
+                    <div id="reviewPageReviewStars">Stars</div>
                   </div>
                 </div>
               </div>
