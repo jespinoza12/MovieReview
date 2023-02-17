@@ -21,7 +21,7 @@ const Navbar = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9292/items/user", {
+      .get("http://localhost:9292/items/user" || "https://review-it.herokuapp.com/items/user", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
