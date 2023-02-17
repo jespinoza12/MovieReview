@@ -58,7 +58,7 @@ const SignupPg = () => {
       password &&
       password === password2
     ) {
-      axios.post("http://localhost:9292/items/register", user).then((res) => {
+      axios.post("http://localhost:9292/items/register" || "https://review-it.herokuapp.com/items/register", user).then((res) => {
         setMessage(res.data.message);
       });
     } else {
