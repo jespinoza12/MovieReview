@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./AdvSrchResPg.css";
 import Navbar from "../Navbar/Navbar";
-
+import { useHistory } from "react-router-dom";
 const AdvancedResults = () => {
+  let history = useHistory()
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -18,7 +19,7 @@ const AdvancedResults = () => {
 
   
   const movieReview = () => {
-    window.location.href = "/movieResult";
+    history.push(process.env.PUBLIC_URL + "/movieResult")
   };
 
   const handleSubmit = (movie) => {

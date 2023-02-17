@@ -65,6 +65,9 @@ app.get("/items/user", authenticate, (req, res) => {
   res.send({ user: req.user });
 });
 
+
+
+
 app.post("/items/reviews", function (req, res) {
   const { userID, movieID, userRev, fname, lname } = req.body;
   sql.connect(config, function (err) {

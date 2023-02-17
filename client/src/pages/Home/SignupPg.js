@@ -2,13 +2,19 @@ import "./SignupPg.css";
 import logo from "../Assets/logo.png";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom"
+
 const SignupPg = () => {
+  let history = useHistory()
+
   function home() {
-    window.location.href = "/";
+    
+    history.push(process.env.PUBLIC_URL + "/")
   }
 
   const login = () => {
-    window.location.href = "/login";
+    history.push(process.env.PUBLIC_URL + "/login")
+
   };
 
   const [message, setMessage] = useState("");
@@ -58,7 +64,7 @@ const SignupPg = () => {
       password &&
       password === password2
     ) {
-      axios.post("http://localhost:9292/items/register" || "https://review-it.herokuapp.com/items/register", user).then((res) => {
+      axios.post("https://review-it.herokuapp.com/items/register", user).then((res) => {
         setMessage(res.data.message);
       });
     } else {

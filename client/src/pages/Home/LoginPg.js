@@ -3,17 +3,21 @@ import logo from "../Assets/logo.png";
 import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
+import { useHistory } from "react-router-dom"
+
 
 const LoginPg = () => {
+  let history = useHistory()
   const [message, setMessage] = useState("");
   const [hidden, setHidden] = useState(true);
 
   const home = () => {
-    window.location.href = "/";
+    history.push(process.env.PUBLIC_URL + "/");
   };
 
   const register = () => {
-    window.location.href = "/register";
+    history.push(process.env.PUBLIC_URL + "/register")
+    ;
   };
 
   const [user, setUser] = useState({
@@ -32,7 +36,7 @@ const LoginPg = () => {
 
   const login = () => {
     axios
-      .post("http://localhost:9292/items/login" || "https://review-it.herokuapp.com/items/login", user)
+      .post("https://review-it.herokuapp.com/items/login", user)
       .then((res) => {
         if (res.data.token) {
           localStorage.setItem("token", res.data.token);
