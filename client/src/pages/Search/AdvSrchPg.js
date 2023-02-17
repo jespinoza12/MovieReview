@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./AdvSrchPg.css";
 import background from "../Assets/background2.png";
-
+import { useHistory } from "react-router-dom";
 const AdvSrchPg = () => {
   const [genres, setGenres] = useState([]);
+  let history = useHistory()
+
   const [selectedGenre, setSelectedGenre] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");

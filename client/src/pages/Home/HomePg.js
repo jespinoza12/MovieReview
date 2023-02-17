@@ -3,7 +3,10 @@ import Navbar from "../Navbar/Navbar";
 import "./HomePg.css";
 import background from "../Assets/background2.png";
 import axios from "axios";
+import { useHistory } from "react-router-dom"
+
 const HomePg = () => {
+  let history = useHistory()
   const [input, setInput] = useState("");
   const handleSearchTermChange = (event) => {
     setInput(event.target.value);

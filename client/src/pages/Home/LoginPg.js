@@ -3,8 +3,11 @@ import logo from "../Assets/logo.png";
 import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
+import { useHistory } from "react-router-dom"
+
 
 const LoginPg = () => {
+  let history = useHistory()
   const [message, setMessage] = useState("");
   const [hidden, setHidden] = useState(true);
 

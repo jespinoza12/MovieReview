@@ -2,8 +2,13 @@ import "./SignupPg.css";
 import logo from "../Assets/logo.png";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom"
+
 const SignupPg = () => {
+  let history = useHistory()
+
   function home() {
+    
     history.push(process.env.PUBLIC_URL + "/")
   }
 
