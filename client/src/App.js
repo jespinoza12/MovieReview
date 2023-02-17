@@ -52,10 +52,10 @@ function isAdmin() {
             <AdvSrchResPg />
         </Route>
         <Route exact path={process.env.PUBLIC_URL + "/movieResult"} fallback={<ErrorPage />}>
-            {isLoggedIn() ? <ReviewPg /> : <LoginPg/>}
+            {isLoggedIn ? <ReviewPg /> : <LoginPg/>}
         </Route>
         <Route exact path={process.env.PUBLIC_URL + "/admin"} fallback={<ErrorPage />}>
-            {isAdmin() ? <Admin /> : <HomePg />}
+            {isAdmin ? <Admin /> : <HomePg />}
         </Route>
         </Switch>
       </Router>
