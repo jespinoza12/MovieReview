@@ -9,11 +9,12 @@ const LoginPg = () => {
   const [hidden, setHidden] = useState(true);
 
   const home = () => {
-    window.location.href = "/";
+    history.push(process.env.PUBLIC_URL + "/");
   };
 
   const register = () => {
-    window.location.href = "/register";
+    history.push(process.env.PUBLIC_URL + "/register")
+    ;
   };
 
   const [user, setUser] = useState({

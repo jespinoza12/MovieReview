@@ -4,11 +4,12 @@ import { useState } from "react";
 import axios from "axios";
 const SignupPg = () => {
   function home() {
-    window.location.href = "/";
+    history.push(process.env.PUBLIC_URL + "/")
   }
 
   const login = () => {
-    window.location.href = "/login";
+    history.push(process.env.PUBLIC_URL + "/login")
+
   };
 
   const [message, setMessage] = useState("");

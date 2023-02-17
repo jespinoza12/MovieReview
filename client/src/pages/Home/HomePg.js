@@ -10,7 +10,7 @@ const HomePg = () => {
   };
 
   const advancedSearch = () => {
-    window.location.href = "/advancedSearch";
+    history.push(process.env.PUBLIC_URL + "/advancedSearch")
   };
 
   const handleSubmit = (event) => {
@@ -22,7 +22,8 @@ const HomePg = () => {
       .then((response) => {
         localStorage.setItem("searchTerm", input);
         localStorage.setItem("movies", JSON.stringify(response.data.results));
-        window.location.href = "/searchResults";
+        history.push(process.env.PUBLIC_URL + "/searchResults")
+
       })
       .catch((error) => {
         console.log(error);

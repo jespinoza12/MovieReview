@@ -13,7 +13,7 @@ const AdvancedResults = () => {
 
   const handleSubmit = (movie) => {
     localStorage.setItem("clickedMovie", JSON.stringify(movie));
-    window.location.href = "/movieResult";
+    history.push(process.env.PUBLIC_URL + "/movieResult")
   };
 
   return (

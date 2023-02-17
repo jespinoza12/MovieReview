@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./AdvSrchPg.css";
 import background from "../Assets/background2.png";
-import HomePg from "../Home/HomePg";
 
 const AdvSrchPg = () => {
   const [genres, setGenres] = useState([]);
@@ -11,7 +10,7 @@ const AdvSrchPg = () => {
   const [lname, setLname] = useState("");
 
   const simpleSearch = () => {
-    window.location.href = "/";
+    history.push(process.env.PUBLIC_URL + "/")
   };
 
   useEffect(() => {

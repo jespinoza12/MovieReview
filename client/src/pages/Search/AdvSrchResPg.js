@@ -18,7 +18,7 @@ const AdvancedResults = () => {
 
   
   const movieReview = () => {
-    window.location.href = "/movieResult";
+    history.push(process.env.PUBLIC_URL + "/movieResult")
   };
 
   const handleSubmit = (movie) => {
