@@ -2,19 +2,22 @@ import "./Navbar.css";
 import logo from "../Assets/logo.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom"
 
 const Navbar = () => {
+  let history = useHistory()
+
   const refreshPage = () => {
-    window.location.href = process.env.PUBLIC_URL + "/";
+    history.push(process.env.PUBLIC_URL + "/")
   };
 
   const login = () => {
-    window.location.href = process.env.PUBLIC_URL + "/login";
+    history.push(process.env.PUBLIC_URL + "/login")
   };
 
   const logout = () => {
     localStorage.clear();
-    window.location.href = process.env.PUBLIC_URL + "/";
+    history.push(process.env.PUBLIC_URL + "/")
   };
 
   const [user, setUser] = useState(null);
@@ -51,7 +54,7 @@ const Navbar = () => {
         {user ? (
           <span>
             {"Welcome: " + user.user.fname + " " + user.user.lname}
-            <button onClick={logout}>Logout</button>{" "}
+            <button onClick={logout}>Logout</button>
           </span>
         ) : (
           <span onClick={login}>Login</span>

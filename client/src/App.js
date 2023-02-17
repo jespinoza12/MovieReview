@@ -30,7 +30,7 @@ function isAdmin() {
   }
   
   return (
-    <div>
+    <div className="App">
       <Router>
         <Switch>
         <Route exact path={process.env.PUBLIC_URL + "/"} fallback={<ErrorPage />}>
