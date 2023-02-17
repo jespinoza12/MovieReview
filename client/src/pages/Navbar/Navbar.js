@@ -5,16 +5,16 @@ import axios from "axios";
 
 const Navbar = () => {
   const refreshPage = () => {
-    window.location.href = "/";
+    window.location.href = process.env.PUBLIC_URL + "/";
   };
 
   const login = () => {
-    window.location.href = "/login";
+    window.location.href = process.env.PUBLIC_URL + "/login";
   };
 
   const logout = () => {
     localStorage.clear();
-    window.location.href = "/";
+    window.location.href = process.env.PUBLIC_URL + "/";
   };
 
   const [user, setUser] = useState(null);
