@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = process.env.PORT || 9002
 const bcrypt = require("bcryptjs");
+const path = require('path')
 const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
@@ -27,10 +28,11 @@ pool.connect((err) => {
 
 // declare a new express app
 const app = express();
-app.use(express.json({ limit: "100mb", extended: true }));
-app.use(express.urlencoded({ limit: "100mb", extended: true }));
-app.use(bodyParser.json());
-app.use(cors({}));
+app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.json({limit: '100mb', extended: true}))
+app.use(express.urlencoded({limit: '100mb', extended: true}))
+app.use(cors())
+
 // Enable CORS for all methods
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
