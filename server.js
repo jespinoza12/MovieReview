@@ -65,6 +65,41 @@ app.get("/items/user", authenticate, (req, res) => {
   res.send({ user: req.user });
 });
 
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+app.get('/register', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+app.get('/searchResults', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+app.get('/advancedSearch', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+app.get('/advancedResults', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+app.get('/movieResult', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
+
+
+
 app.post("/items/reviews", function (req, res) {
   const { userID, movieID, userRev, fname, lname } = req.body;
   sql.connect(config, function (err) {

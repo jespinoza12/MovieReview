@@ -11,6 +11,7 @@ import ErrorPage from "./pages/Assets/Error-page";
 import AdvSrchResPg from "./pages/Search/AdvSrchResPg";
 import Admin from "./pages/Admin/Admin";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
 
@@ -53,11 +54,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/advancedSearch",
-    element: <AdvSrchPg />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/searchResults",
     element: <AdvSrchPg />,
     errorElement: <ErrorPage />,
   },
