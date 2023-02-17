@@ -5,7 +5,6 @@ const port = 9292;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const awsServerlessExpressMiddleware = require("aws-serverless-express/middleware");
 require("dotenv").config();
 const sql = require("mssql");
 
@@ -31,7 +30,6 @@ const app = express();
 app.use(express.json({ limit: "100mb", extended: true }));
 app.use(express.urlencoded({ limit: "100mb", extended: true }));
 app.use(bodyParser.json());
-app.use(awsServerlessExpressMiddleware.eventContext());
 app.use(cors({}));
 // Enable CORS for all methods
 app.use(function (req, res, next) {
