@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "/",
+  "homepage": "https://review-it.herokuapp.com/",
   "engines": {
     "node": "16.x"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node sqlserver.js"
   },
   "keywords": [],
   "author": "",
