@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AdvSrchResPg.css";
 import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
+
 const AdvancedResults = () => {
   let history = useHistory()
   const [movies, setMovies] = useState([]);

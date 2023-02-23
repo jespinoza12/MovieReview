@@ -2,7 +2,7 @@
   margin: 5px;
   padding: 5px;
   max-width: 95%;
-  /* border: 1px solid #fff; */
+  border: 1px solid #fff;
   flex: 1;
 }
 .inner-col {
@@ -16,10 +16,9 @@
 }
 .resultCard {
   padding:5px;
-  /* max-width: 250px; */
 }
 .resultCard > img {
-  width: 200px;
+  min-width: 200px;
 }
 #movieTitle {
   word-wrap:normal;
@@ -28,22 +27,13 @@
   border-bottom: 2px solid #ffc31f;
   display: block;
 }
-
 .table {
   text-align: center;
   justify-content: space-between;
   flex-direction: row;
-  /* justify-content: space-evenly; */
-  /* justify-content: space-around; */
   flex: 1;
   display: flex;
   flex-grow: 1;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-gap: 10px;
-   */
-  /* overflow: scroll; */
-
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
@@ -51,7 +41,6 @@
   border-bottom: 1px solid white;
   flex-wrap: wrap;
 }
-
 
 #submitBtn {
   max-width: 100px;
