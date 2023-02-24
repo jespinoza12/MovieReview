@@ -36,7 +36,7 @@ const LoginPg = () => {
 
   const login = () => {
     axios
-      .post("https://review-it.herokuapp.com/items/login", user)
+      .post("http://localhost:9002/items/login", user)
       .then((res) => {
         if (res.data.token) {
           localStorage.setItem("token", res.data.token);
