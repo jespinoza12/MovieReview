@@ -17,9 +17,9 @@
 .resultCard {
   padding:5px;
 }
-.resultCard > img {
+/* .resultCard > img {
   min-width: 200px;
-}
+} */
 #movieTitle {
   word-wrap:normal;
 }
@@ -50,4 +50,24 @@
   border-radius: 5px;
   font-family: "Titillium Web", "Kdam Thmor Pro";
   cursor: pointer;
+}
+.imgBlock{
+  width: 200px;
+  height: 300px;
+  max-height: 300px;
+  max-width: 200px;
+  border: 1px solid white;
+}
+.imgBlock > img{
+  height: 300px;
+  width: 200px;
+}
+#movieTitle, #movieBtn{
+  text-align: center;
+  border: 1px solid white;
+}
+#movieTitle{
+  min-width: 200px;
+  max-width: 200px;
+  height: 50px;
 }
