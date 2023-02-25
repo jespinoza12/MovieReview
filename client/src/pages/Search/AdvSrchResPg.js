@@ -19,7 +19,12 @@ const AdvancedResults = () => {
 
   
   const movieReview = () => {
-    history.push(process.env.PUBLIC_URL + "/movieResult")
+    if (localStorage.getItem("token") == null) {
+      history.push(process.env.PUBLIC_URL + "/login")
+
+    }else {
+      history.push(process.env.PUBLIC_URL + "/movieResult")
+    }
   };
 
   const handleSubmit = (movie) => {
