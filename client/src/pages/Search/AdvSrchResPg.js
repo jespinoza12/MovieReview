@@ -21,7 +21,6 @@ const AdvancedResults = () => {
   const movieReview = () => {
     if (localStorage.getItem("token") == null) {
       history.push(process.env.PUBLIC_URL + "/login")
-
     }else {
       history.push(process.env.PUBLIC_URL + "/movieResult")
     }

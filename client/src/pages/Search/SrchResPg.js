@@ -3,7 +3,7 @@ import "./AdvSrchResPg.css";
 import Navbar from "../Navbar/Navbar";
 import { useHistory } from "react-router-dom";
 const AdvancedResults = () => {
-  let history = useHistory()
+  let history = useHistory();
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -14,7 +14,12 @@ const AdvancedResults = () => {
 
   const handleSubmit = (movie) => {
     localStorage.setItem("clickedMovie", JSON.stringify(movie));
-    history.push(process.env.PUBLIC_URL + "/movieResult")
+
+    if (localStorage.getItem("token") == null) {
+      history.push(process.env.PUBLIC_URL + "/login");
+    } else {
+      history.push(process.env.PUBLIC_URL + "/movieResult");
+    }
   };
 
   return (
