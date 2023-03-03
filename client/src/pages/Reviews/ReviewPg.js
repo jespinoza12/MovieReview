@@ -9,16 +9,25 @@ const ReviewPg = () => {
   const [clickedMovie, setClickedMovie] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [stars, setStars] = useState(0);
   useEffect(() => {
     setClickedMovie(JSON.parse(localStorage.getItem("clickedMovie")));
     getReviews();
+    calculateAverageStars();
     console.log(clickedMovie);
     console.log(reviews);
   }, []);
 
   useEffect(() => {
     console.log(reviews);
+    setLoading(false);
   }, [reviews]);
+
+
+  useEffect(() => {
+    console.log(clickedMovie);
+    getReviews();
+  }, [clickedMovie]);
 
 
   function onSubmit(e) {
@@ -36,8 +45,6 @@ const ReviewPg = () => {
       })
       .catch((error) => {
         console.log(error);
-        setLoading(false);
-
       });
   }
 
@@ -62,13 +69,36 @@ const ReviewPg = () => {
     console.log(review);
   };
 
+  function calculateAverageStars() {
+    let totalStars = 0;
+    for (let i = 0; i < reviews.length; i++) {
+      console.log(reviews[i].stars)
+      totalStars += reviews[i].stars;
+    }
+    const averageStars = totalStars / reviews.length;
+    setStars(averageStars);
+  }
+
+  // const getReviews = () => {
+  //   setLoading(true);
+  //   fetch("https://review-it.herokuapp.com/items/getReviews")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setLoading(true);
+  //       setReviews(data); // update the state variable with the response data
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching reviews: ", error);
+  //     });
+  // };
+
+  
   const getReviews = () => {
-    setLoading(true);
-    fetch("http://localhost:9002/items/getReviews")
+    fetch(`http://localhost:9002/items/getReviewsByID/${localStorage.getItem('clickedMovieID')}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(true);
-        setReviews(data); // update the state variable with the response data
+        setReviews(data); 
       })
       .catch((error) => {
         console.error("Error fetching reviews: ", error);
@@ -91,7 +121,7 @@ const ReviewPg = () => {
                 </div>
                 <div className="box">
                   <h1>{clickedMovie.title}</h1>
-                  <h3>StarRating: 5/5</h3>
+                  <h3>StarRating: {stars.toString()}/5</h3>
                   <h4 id="movieStars">{clickedMovie.release_date}</h4>
                 </div>
               </div>
@@ -105,7 +135,7 @@ const ReviewPg = () => {
               <div className="box">
                 <h1 className="box reviewsBox">Reviews</h1>
                 <div className="box">
-                  {loading ? (
+                  {!loading ? (
                     <div className="table">
                       {reviews.map((review, Id) => (
                         <div className="table" key={Id}>

@@ -19,6 +19,7 @@ const AdvancedResults = () => {
       history.push(process.env.PUBLIC_URL + "/login");
     } else {
       history.push(process.env.PUBLIC_URL + "/movieResult");
+      localStorage.setItem("clickedMovieID", JSON.stringify(movie.id))
     }
   };
 

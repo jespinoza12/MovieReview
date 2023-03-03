@@ -209,12 +209,48 @@ router.get("/items/getReviews", function (req, res) {
           lname: review.lname,
           stars: review.stars,
           movieID: review.movieID,
-          userID: review.userID
+          userID: review.userID,
+          userRev: review.userRev,
         };
       });
       res.send(reviews);
     });
   });
 });
+
+router.get("/items/getReviewsByID/:ID", function (req, res) {
+  const ID = req.params.ID;
+  sql.connect(config, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({
+        message: "An error occurred while connecting to the database",
+      });
+    }
+
+    const request = new sql.Request();
+    request.query(`SELECT * FROM reviews WHERE movieID = ${ID}`, function (err, result) {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({
+          message: "An error occurred while querying the database",
+        });
+      }
+      const reviews = result.recordset.map((review) => {
+        return {
+          id: review.id,
+          fname: review.fname,
+          lname: review.lname,
+          stars: review.stars,
+          movieID: review.movieID,
+          userID: review.userID,
+          userRev: review.userRev,
+        };
+      });
+      res.send(reviews);
+    });
+  });
+});
+
 
 module.exports = router;

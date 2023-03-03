@@ -28,6 +28,7 @@ const AdvancedResults = () => {
 
   const handleSubmit = (movie) => {
     localStorage.setItem("clickedMovie", JSON.stringify(movie));
+    localStorage.setItem("clickedMovieID", JSON.stringify(movie.id))
     movieReview();
   };
 
