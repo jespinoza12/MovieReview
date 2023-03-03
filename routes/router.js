@@ -14,7 +14,6 @@ pool.connect((err) => {
   }
 });
 
-
 router.get("/items/user", auth, (req, res) => {
   res.send({ user: req.user });
 });
@@ -134,7 +133,7 @@ router.delete("/items/deleteUser", function (req, res) {
 });
 
 router.post("/items/reviews", function (req, res) {
-  const { userID, movieID, userRev, fname, lname } = req.body;
+  const { userId, movieID, userRev, fname, lname, stars } = req.body;
   sql.connect(config, function (err) {
     if (err) {
       console.error(err);
@@ -144,9 +143,9 @@ router.post("/items/reviews", function (req, res) {
     }
 
     const request = new sql.Request();
-    request.input("userID", sql.VarChar, userID);
-    request.input("movieID", sql.VarChar, movieID);
-
+    request.input("userID", sql.Int, parseInt(userId));
+    request.input("movieID", sql.Int, movieID);
+    console.log("userID: " + userId);
     request.query(
       "SELECT * FROM reviews WHERE userID = @userID AND movieID = @movieID",
       function (err, result) {
@@ -163,11 +162,12 @@ router.post("/items/reviews", function (req, res) {
           res.send({ message: "Review already exists" });
         } else {
           const query =
-            "INSERT INTO reviews (fname, lName, userID, movieID, userRev) VALUES (@fname, @lname, @userID, @movieID, @userRev)";
+            "INSERT INTO reviews (fname, lname, userID, movieID, userRev, stars) VALUES (@fname, @lname, @userID, @movieID, @userRev, @stars)";
 
           request.input("fname", sql.VarChar, fname);
           request.input("lname", sql.VarChar, lname);
           request.input("userRev", sql.VarChar, userRev);
+          request.input("stars", sql.VarChar, stars);
 
           request.query(query, function (err, result) {
             if (err) {
@@ -185,57 +185,28 @@ router.post("/items/reviews", function (req, res) {
   });
 });
 
-router.post("/items/stars", function (req, res) {
-  const { userID, movieID, userRev } = req.body;
+router.get("/items/getReviews", function (req, res) {
+  //I want this to get all the reviews from the database
+  sql.connect(config, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({
+        message: "An error occurred while connecting to the database",
+      });
+    }
 
-  const pool = new sql.ConnectionPool(config);
-  pool.connect().then(() => {
-    const request = new sql.Request(pool);
-
-    // Check if the user has already reviewed the movie
-    request.input("userID", sql.VarChar, userID);
-    request.input("movieID", sql.VarChar, movieID);
-    request.query(
-      "SELECT * FROM starRatings WHERE userID = @userID AND movieID = @movieID",
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send({ message: "An error occurred" });
-        } else if (result.recordset.length > 0) {
-          // Update the existing review
-          request.input("userRev", sql.VarChar, userRev);
-          request.query(
-            "UPDATE starRatings SET userRev = @userRev WHERE userID = @userID AND movieID = @movieID",
-            (err, result) => {
-              if (err) {
-                console.error(err);
-                res.status(500).send({ message: "An error occurred" });
-              } else {
-                res.send({ message: "The Review was Successfully Updated" });
-              }
-              pool.close();
-            }
-          );
-        } else {
-          // Create a new review
-          request.input("userRev", sql.VarChar, userRev);
-          request.query(
-            "INSERT INTO starRatings (userID, movieID, userRev) VALUES (@userID, @movieID, @userRev)",
-            (err, result) => {
-              if (err) {
-                console.error(err);
-                res.status(500).send({ message: "An error occurred" });
-              } else {
-                res.send({ message: "The Review was Successfully Uploaded" });
-              }
-              pool.close();
-            }
-          );
-        }
+    const request = new sql.Request();
+    request.query("SELECT * FROM reviews", function (err, result) {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({
+          message: "An error occurred while querying the database",
+        });
       }
-    );
+
+      res.send({ reviews: result.recordset });
+    });
   });
 });
 
 module.exports = router;
-

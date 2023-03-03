@@ -1,19 +1,68 @@
 import Navbar from "../Navbar/Navbar";
 import "./ReviewPg.css";
 import { useState, useEffect } from "react";
-import StarRating from "./StarsRating";
+// import StarRating from "./StarsRating";
+import "./StarsRating.css";
+import axios from "axios";
 
 const ReviewPg = () => {
   const [clickedMovie, setClickedMovie] = useState([]);
-
+  const [reviews, setReviews] = useState([]);
   useEffect(() => {
     setClickedMovie(JSON.parse(localStorage.getItem("clickedMovie")));
-    console.log(clickedMovie)
+    getReviews();
+    console.log(clickedMovie);
   }, []);
 
   function onSubmit(e) {
     e.preventDefault();
+    console.log(review);
+    addReview();
   }
+
+  function addReview() {
+    axios
+      .post("https://review-it.herokuapp.com/items/reviews", review)
+      .then((res) => {
+        console.log(res.data);
+        setReviews([res.data]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  const [review, setReview] = useState({
+    fname: "",
+    lname: "",
+    userRev: "",
+    stars: "",
+    movieID: "",
+    userId: localStorage.getItem("ID"),
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const movieID = "movieID";
+    setReview({
+      ...review,
+      [name]: value,
+      [movieID]: clickedMovie.id,
+    });
+
+    console.log(review);
+  };
+
+  const getReviews = () => {
+    axios
+      .get("http://localhost:9002/items/getReviews")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -46,9 +95,13 @@ const ReviewPg = () => {
                 <h1 className="box reviewsBox">Reviews</h1>
                 <div className="box">
                   <div className="table">
-                    <div id="reviewPageReviewId">id</div>
-                    <div id="reviewPageUserReview">reviewHere</div>
-                    <div id="reviewPageReviewStars">Stars</div>
+                    {reviews.map((review) => (
+                      <div className="table">
+                        <div id="reviewPageReviewId">{review.fname}</div>
+                        <div id="reviewPageUserReview">{review.userRev}</div>
+                        <div id="reviewPageReviewStars">{review.stars}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -61,23 +114,88 @@ const ReviewPg = () => {
               <h1 className="box reviewBox">Leave a comment</h1>
               {/* </div> */}
 
-              <div className="box form" onSubmit={onSubmit}>
-                <label>Username:</label>
+              <div className="box form">
+                <label>First name:</label>
                 <br />
                 <input
-                  id="usernameText"
+                  name="fname"
+                  value={review.fname}
+                  onChange={handleChange}
+                  id="fnameText"
                   type="text"
-                  name="Username"
+                />
+                <br />
+                <label>Last name:</label>
+                <br />
+                <input
+                  id="lnameText"
+                  type="text"
+                  name="lname"
+                  value={review.lname}
+                  onChange={handleChange}
                 />
                 <br />
                 <label>Review:</label>
                 <br />
-                <textarea id="reviewText" type="text" name="Review" />
+                <textarea
+                  id="reviewText"
+                  type="text"
+                  name="review"
+                  value={review.userRev}
+                  onChange={handleChange}
+                />
                 <br />
-                <StarRating />
+                <div class="rate">
+                  <input
+                    type="radio"
+                    id="star5"
+                    name="stars"
+                    value="5"
+                    onChange={handleChange}
+                  />
+                  <label for="star5" />
+                  <input
+                    type="radio"
+                    id="star4"
+                    name="stars"
+                    value="4"
+                    onChange={handleChange}
+                  />
+                  <label for="star4" />
+                  <input
+                    type="radio"
+                    id="star3"
+                    name="stars"
+                    value="3"
+                    onChange={handleChange}
+                  />
+                  <label for="star3" />
+                  <input
+                    type="radio"
+                    id="star2"
+                    name="stars"
+                    value="2"
+                    onChange={handleChange}
+                  />
+                  <label for="star2" />
+                  <input
+                    type="radio"
+                    id="star1"
+                    name="stars"
+                    value="1"
+                    onChange={handleChange}
+                  />
+                  <label for="star1" />
+                </div>
+
                 <br />
                 <br />
-                <input id="submitBtn" type="submit" value="Submit" />
+                <input
+                  id="submitBtn"
+                  type="submit"
+                  value="Submit"
+                  onClick={onSubmit}
+                />
               </div>
             </div>
           </div>
