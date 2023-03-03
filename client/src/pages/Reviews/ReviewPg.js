@@ -8,11 +8,18 @@ import axios from "axios";
 const ReviewPg = () => {
   const [clickedMovie, setClickedMovie] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     setClickedMovie(JSON.parse(localStorage.getItem("clickedMovie")));
     getReviews();
     console.log(clickedMovie);
+    console.log(reviews);
   }, []);
+
+  useEffect(() => {
+    console.log(reviews);
+  }, [reviews]);
+
 
   function onSubmit(e) {
     e.preventDefault();
@@ -29,6 +36,8 @@ const ReviewPg = () => {
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
+
       });
   }
 
@@ -54,13 +63,15 @@ const ReviewPg = () => {
   };
 
   const getReviews = () => {
-    axios
-      .get("http://localhost:9002/items/getReviews")
-      .then((res) => {
-        console.log(res.data);
+    setLoading(true);
+    fetch("http://localhost:9002/items/getReviews")
+      .then((response) => response.json())
+      .then((data) => {
+        setLoading(true);
+        setReviews(data); // update the state variable with the response data
       })
       .catch((error) => {
-        console.log(error);
+        console.error("Error fetching reviews: ", error);
       });
   };
 
@@ -94,15 +105,19 @@ const ReviewPg = () => {
               <div className="box">
                 <h1 className="box reviewsBox">Reviews</h1>
                 <div className="box">
-                  <div className="table">
-                    {reviews.map((review) => (
-                      <div className="table">
-                        <div id="reviewPageReviewId">{review.fname}</div>
-                        <div id="reviewPageUserReview">{review.userRev}</div>
-                        <div id="reviewPageReviewStars">{review.stars}</div>
-                      </div>
-                    ))}
-                  </div>
+                  {loading ? (
+                    <div className="table">
+                      {reviews.map((review, Id) => (
+                        <div className="table" key={Id}>
+                          <div id="reviewPageReviewId">Name: {review.fname}</div>
+                          <div id="reviewPageUserReview">Comment: {review.userRev}</div>
+                          <div id="reviewPageReviewStars">Rating: {review.stars}</div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div>Loading...</div>
+                  )}
                 </div>
               </div>
             </div>

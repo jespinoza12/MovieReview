@@ -186,7 +186,6 @@ router.post("/items/reviews", function (req, res) {
 });
 
 router.get("/items/getReviews", function (req, res) {
-  //I want this to get all the reviews from the database
   sql.connect(config, function (err) {
     if (err) {
       console.error(err);
@@ -203,8 +202,17 @@ router.get("/items/getReviews", function (req, res) {
           message: "An error occurred while querying the database",
         });
       }
-
-      res.send({ reviews: result.recordset });
+      const reviews = result.recordset.map((review) => {
+        return {
+          id: review.id,
+          fname: review.fname,
+          lname: review.lname,
+          stars: review.stars,
+          movieID: review.movieID,
+          userID: review.userID
+        };
+      });
+      res.send(reviews);
     });
   });
 });
