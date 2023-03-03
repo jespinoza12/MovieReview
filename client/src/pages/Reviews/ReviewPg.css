@@ -54,6 +54,10 @@ label {
   min-height: 95%;
   border-left: 2px solid white;
 }
+.desc > img {
+  /* opacity: 0.7; */
+  width: 600px;
+}
 #submitBtn {
   max-width: 100px;
   margin: 5px;

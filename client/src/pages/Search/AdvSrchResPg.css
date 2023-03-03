@@ -2,7 +2,6 @@
   margin: 5px;
   padding: 5px;
   max-width: 95%;
-  border: 1px solid #fff;
   flex: 1;
 }
 .inner-col {
@@ -17,9 +16,6 @@
 .resultCard {
   padding:5px;
 }
-/* .resultCard > img {
-  min-width: 200px;
-} */
 #movieTitle {
   word-wrap:normal;
 }
@@ -56,7 +52,6 @@
   height: 300px;
   max-height: 300px;
   max-width: 200px;
-  border: 1px solid white;
 }
 .imgBlock > img{
   height: 300px;
@@ -64,10 +59,9 @@
 }
 #movieTitle, #movieBtn{
   text-align: center;
-  border: 1px solid white;
 }
 #movieTitle{
   min-width: 200px;
   max-width: 200px;
-  height: 50px;
+  height: 80px;
 }

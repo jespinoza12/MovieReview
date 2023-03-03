@@ -44,6 +44,8 @@ const AdvancedResults = () => {
                         onClick={() => handleSubmit(movie)}
                       />
                     </div>
+                    <br/>
+                    
                   </div>
                 ))
               ) : (
