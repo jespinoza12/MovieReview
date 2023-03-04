@@ -43,7 +43,7 @@ const ReviewPg = () => {
       .post("https://review-it.herokuapp.com/items/reviews", review)
       .then((res) => {
         console.log(res.data);
-        setReviews(res.data);
+        getReviews();
       })
       .catch((error) => {
         console.log(error);
