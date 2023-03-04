@@ -35,7 +35,6 @@ const ReviewPg = () => {
     e.preventDefault();
     console.log(review);
     addReview();
-    setLoading(true);
     getReviews();
   }
 
