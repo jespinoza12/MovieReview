@@ -3,6 +3,7 @@ import "./ReviewPg.css";
 import { useState, useEffect } from "react";
 // import StarRating from "./StarsRating";
 import "./StarsRating.css";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const ReviewPg = () => {
@@ -94,7 +95,7 @@ const ReviewPg = () => {
 
   
   const getReviews = () => {
-    fetch(`http://localhost:9002/items/getReviewsByID/${localStorage.getItem('clickedMovieID')}`)
+    fetch(`https://review-it.herokuapp.com/items/getReviewsByID/${localStorage.getItem('clickedMovieID')}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(true);
@@ -185,7 +186,7 @@ const ReviewPg = () => {
                 <textarea
                   id="reviewText"
                   type="text"
-                  name="UserRev"
+                  name="userRev"
                   value={review.userRev}
                   onChange={handleChange}
                 />
