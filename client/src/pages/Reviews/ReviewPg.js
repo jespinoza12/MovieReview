@@ -35,6 +35,8 @@ const ReviewPg = () => {
     e.preventDefault();
     console.log(review);
     addReview();
+    setLoading(true);
+    getReviews();
   }
 
   function addReview() {
@@ -42,7 +44,7 @@ const ReviewPg = () => {
       .post("https://review-it.herokuapp.com/items/reviews", review)
       .then((res) => {
         console.log(res.data);
-        setReviews([res.data]);
+        setReviews(res.data);
       })
       .catch((error) => {
         console.log(error);
