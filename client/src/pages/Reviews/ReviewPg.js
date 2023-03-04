@@ -185,7 +185,7 @@ const ReviewPg = () => {
                 <textarea
                   id="reviewText"
                   type="text"
-                  name="review"
+                  name="UserRev"
                   value={review.userRev}
                   onChange={handleChange}
                 />
