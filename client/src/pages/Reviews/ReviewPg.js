@@ -37,6 +37,7 @@ const ReviewPg = () => {
     addReview();
     getReviews();
   }
+  console.log(clickedMovie);
 
   function addReview() {
     axios
@@ -129,6 +130,10 @@ const ReviewPg = () => {
               </div>
               <div className="box">
                 <div className="box desc">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${clickedMovie.backdrop_path}`}
+                    alt={clickedMovie.title}
+                  />
                   <p className="box overview">{clickedMovie.overview}</p>
                 </div>
               </div>

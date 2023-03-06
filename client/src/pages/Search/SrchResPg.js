@@ -65,18 +65,23 @@ const AdvancedResults = () => {
               {movies && !loading ? (
                 movies.map((movie) => (
                   <div className="resultCard" key={movie.id}>
-                    <img
-                      className="img"
-                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                      alt={movie.title}
-                    />
-                    <div>{movie.title}</div>
-                    <input
-                      id="submitBtn"
-                      type="submit"
-                      value="Review"
-                      onClick={() => handleSubmit(movie)}
-                    />
+                    <div className="imgBlock">
+                      <img 
+                        
+                        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                      />
+                    </div>
+                    <div id="movieTitle">{movie.title}</div>
+                    <div id="movieBtn">
+                      <input
+                        id="submitBtn"
+                        type="submit"
+                        value="Review"
+                        onClick={() => handleSubmit(movie)}
+                      />
+                    </div>
+                    <br/>
+                    
                   </div>
                 ))
               ) : (
