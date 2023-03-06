@@ -8,7 +8,7 @@ const Navbar = () => {
   let history = useHistory()
 
   const refreshPage = () => {
-    history.push(process.env.PUBLIC_URL + "/")
+    window.location.reload();
   };
 
   const login = () => {
@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const logout = () => {
     localStorage.clear();
-    history.push(process.env.PUBLIC_URL + "/")
+    window.location.reload();
   };
 
   const [user, setUser] = useState(null);

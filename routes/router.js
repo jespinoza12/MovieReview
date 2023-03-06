@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const config = require("./config");
 const pool = new sql.ConnectionPool(config);
 const auth = require("./auth");
+const axios = require("axios");
 pool.connect((err) => {
   if (err) {
     console.error("Error connecting to database:", err);
@@ -13,7 +14,6 @@ pool.connect((err) => {
     console.log("Connected to database");
   }
 });
-
 
 router.get("/items/user", auth, (req, res) => {
   res.send({ user: req.user });
@@ -134,7 +134,7 @@ router.delete("/items/deleteUser", function (req, res) {
 });
 
 router.post("/items/reviews", function (req, res) {
-  const { userID, movieID, userRev, fname, lname } = req.body;
+  const { userId, movieID, userRev, fname, lname, stars } = req.body;
   sql.connect(config, function (err) {
     if (err) {
       console.error(err);
@@ -144,9 +144,9 @@ router.post("/items/reviews", function (req, res) {
     }
 
     const request = new sql.Request();
-    request.input("userID", sql.VarChar, userID);
-    request.input("movieID", sql.VarChar, movieID);
-
+    request.input("userID", sql.Int, parseInt(userId));
+    request.input("movieID", sql.Int, movieID);
+    console.log("userID: " + userId);
     request.query(
       "SELECT * FROM reviews WHERE userID = @userID AND movieID = @movieID",
       function (err, result) {
@@ -163,11 +163,12 @@ router.post("/items/reviews", function (req, res) {
           res.send({ message: "Review already exists" });
         } else {
           const query =
-            "INSERT INTO reviews (fname, lName, userID, movieID, userRev) VALUES (@fname, @lname, @userID, @movieID, @userRev)";
+            "INSERT INTO reviews (fname, lname, userID, movieID, userRev, stars) VALUES (@fname, @lname, @userID, @movieID, @userRev, @stars)";
 
           request.input("fname", sql.VarChar, fname);
           request.input("lname", sql.VarChar, lname);
           request.input("userRev", sql.VarChar, userRev);
+          request.input("stars", sql.VarChar, stars);
 
           request.query(query, function (err, result) {
             if (err) {
@@ -185,57 +186,170 @@ router.post("/items/reviews", function (req, res) {
   });
 });
 
-router.post("/items/stars", function (req, res) {
-  const { userID, movieID, userRev } = req.body;
+router.get("/items/getReviews", function (req, res) {
+  sql.connect(config, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({
+        message: "An error occurred while connecting to the database",
+      });
+    }
 
-  const pool = new sql.ConnectionPool(config);
-  pool.connect().then(() => {
-    const request = new sql.Request(pool);
+    const request = new sql.Request();
+    request.query("SELECT * FROM reviews", function (err, result) {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({
+          message: "An error occurred while querying the database",
+        });
+      }
+      const reviews = result.recordset.map((review) => {
+        return {
+          id: review.id,
+          fname: review.fname,
+          lname: review.lname,
+          stars: review.stars,
+          movieID: review.movieID,
+          userID: review.userID,
+          userRev: review.userRev,
+        };
+      });
+      res.send(reviews);
+    });
+  });
+});
 
-    // Check if the user has already reviewed the movie
-    request.input("userID", sql.VarChar, userID);
-    request.input("movieID", sql.VarChar, movieID);
+router.get("/items/getReviewsByID/:ID", function (req, res) {
+  const ID = req.params.ID;
+  sql.connect(config, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({
+        message: "An error occurred while connecting to the database",
+      });
+    }
+
+    const request = new sql.Request();
     request.query(
-      "SELECT * FROM starRatings WHERE userID = @userID AND movieID = @movieID",
-      (err, result) => {
+      `SELECT * FROM reviews WHERE movieID = ${ID}`,
+      function (err, result) {
         if (err) {
           console.error(err);
-          res.status(500).send({ message: "An error occurred" });
-        } else if (result.recordset.length > 0) {
-          // Update the existing review
-          request.input("userRev", sql.VarChar, userRev);
-          request.query(
-            "UPDATE starRatings SET userRev = @userRev WHERE userID = @userID AND movieID = @movieID",
-            (err, result) => {
-              if (err) {
-                console.error(err);
-                res.status(500).send({ message: "An error occurred" });
-              } else {
-                res.send({ message: "The Review was Successfully Updated" });
-              }
-              pool.close();
-            }
-          );
-        } else {
-          // Create a new review
-          request.input("userRev", sql.VarChar, userRev);
-          request.query(
-            "INSERT INTO starRatings (userID, movieID, userRev) VALUES (@userID, @movieID, @userRev)",
-            (err, result) => {
-              if (err) {
-                console.error(err);
-                res.status(500).send({ message: "An error occurred" });
-              } else {
-                res.send({ message: "The Review was Successfully Uploaded" });
-              }
-              pool.close();
-            }
-          );
+          return res.status(500).json({
+            message: "An error occurred while querying the database",
+          });
         }
+        const reviews = result.recordset.map((review) => {
+          return {
+            id: review.id,
+            fname: review.fname,
+            lname: review.lname,
+            stars: review.stars,
+            movieID: review.movieID,
+            userID: review.userID,
+            userRev: review.userRev,
+          };
+        });
+        res.json(reviews);
       }
     );
   });
 });
 
-module.exports = router;
+router.get("/items/movie/:query/:page", async (req, res) => {
+  const { query } = req.params;
+  const { page } = req.params;
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=ba5d3eaad19db7b4083fc09da38c13d7&query=${query}&page=${page}`
+    );
+    console.log("Response status: " + response.status);
+    if (!response.ok) {
+      throw new Error(`Network response was not ok ` + page + "" + query);
+    }
+    const movies = await response.json();
+    res.json(movies.results);
+    console.log("Succesfull got movies");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
 
+router.get("/items/actor/:fname/:lname", async (req, res) => {
+  const { fname, lname } = req.params;
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/person?api_key=ba5d3eaad19db7b4083fc09da38c13d7&query=${fname}%20${lname}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const actor = await response.json();
+
+    console.log("Actor status: " + JSON.stringify(actor.results));
+    res.json(actor.results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/items/actor/:id", async (req, res) => {
+  const actorId = req.params.id;
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${actorId}?api_key=ba5d3eaad19db7b4083fc09da38c13d7&append_to_response=combined_credits`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const actor = await response.json();
+    console.log("ID status: " + JSON.stringify(actor));
+    res.json(actor);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/items/genre/:id/:page", async (req, res) => {
+  const selectedGenre = req.params.id;
+  const page = req.params.page;
+  console.log(page);
+  console.log(selectedGenre);
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=ba5d3eaad19db7b4083fc09da38c13d7&with_genres=${selectedGenre}&page=${page}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    console.log("Genre status: " + JSON.stringify(data.results));
+    res.json(data.results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/items/genres", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=ba5d3eaad19db7b4083fc09da38c13d7&language=en-US"
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    console.log(JSON.stringify(data.genres))
+    res.json(data.genres);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+module.exports = router;

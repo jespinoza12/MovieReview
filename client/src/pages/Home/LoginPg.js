@@ -41,6 +41,7 @@ const LoginPg = () => {
         if (res.data.token) {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("role", res.data.user.role);
+          localStorage.setItem("ID", res.data.user.ID);
           setMessage("Login successful");
           setHidden(false);
           // redirect to the home page
