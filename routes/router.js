@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const config = require("./config");
 const pool = new sql.ConnectionPool(config);
 const auth = require("./auth");
+const axios = require("axios");
 pool.connect((err) => {
   if (err) {
     console.error("Error connecting to database:", err);
@@ -229,28 +230,126 @@ router.get("/items/getReviewsByID/:ID", function (req, res) {
     }
 
     const request = new sql.Request();
-    request.query(`SELECT * FROM reviews WHERE movieID = ${ID}`, function (err, result) {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({
-          message: "An error occurred while querying the database",
+    request.query(
+      `SELECT * FROM reviews WHERE movieID = ${ID}`,
+      function (err, result) {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({
+            message: "An error occurred while querying the database",
+          });
+        }
+        const reviews = result.recordset.map((review) => {
+          return {
+            id: review.id,
+            fname: review.fname,
+            lname: review.lname,
+            stars: review.stars,
+            movieID: review.movieID,
+            userID: review.userID,
+            userRev: review.userRev,
+          };
         });
+        res.json(reviews);
       }
-      const reviews = result.recordset.map((review) => {
-        return {
-          id: review.id,
-          fname: review.fname,
-          lname: review.lname,
-          stars: review.stars,
-          movieID: review.movieID,
-          userID: review.userID,
-          userRev: review.userRev,
-        };
-      });
-      res.send(reviews);
-    });
+    );
   });
 });
 
+router.get("/items/movie/:query/:page", async (req, res) => {
+  const { query } = req.params;
+  const { page } = req.params;
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=ba5d3eaad19db7b4083fc09da38c13d7&query=${query}&page=${page}`
+    );
+    console.log("Response status: " + response.status);
+    if (!response.ok) {
+      throw new Error(`Network response was not ok ` + page + "" + query);
+    }
+    const movies = await response.json();
+    res.json(movies.results);
+    console.log("Succesfull got movies");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/items/actor/:fname/:lname", async (req, res) => {
+  const { fname, lname } = req.params;
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/person?api_key=ba5d3eaad19db7b4083fc09da38c13d7&query=${fname}%20${lname}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const actor = await response.json();
+
+    console.log("Actor status: " + JSON.stringify(actor.results));
+    res.json(actor.results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/items/actor/:id", async (req, res) => {
+  const actorId = req.params.id;
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${actorId}?api_key=ba5d3eaad19db7b4083fc09da38c13d7&append_to_response=combined_credits`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const actor = await response.json();
+    console.log("ID status: " + JSON.stringify(actor));
+    res.json(actor);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/items/genre/:id/:page", async (req, res) => {
+  const selectedGenre = req.params.id;
+  const page = req.params.page;
+  console.log(page);
+  console.log(selectedGenre);
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=ba5d3eaad19db7b4083fc09da38c13d7&with_genres=${selectedGenre}&page=${page}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    console.log("Genre status: " + JSON.stringify(data.results));
+    res.json(data.results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/items/genres", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=ba5d3eaad19db7b4083fc09da38c13d7&language=en-US"
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    console.log(JSON.stringify(data.genres))
+    res.json(data.genres);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;

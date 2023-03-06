@@ -6,14 +6,20 @@ const AdvancedResults = () => {
   let history = useHistory()
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("genreSearchRes") == null) {
-      setMovies(JSON.parse(localStorage.getItem("actorSearchRes")));
+      setLoading(true)
+      setMovies(JSON.parse(localStorage.getItem("actorSearchRes")))
+      console.log("Movies: " + JSON.stringify(movies))
+      setLoading(false)
     }else if (localStorage.getItem("actorSearchRes") == null) {
-      setMovies(JSON.parse(localStorage.getItem("genreSearchRes")));
+      setLoading(true)
+      setMovies(JSON.parse(localStorage.getItem("genreSearchRes")))
+      console.log("Genre Movies: " + JSON.stringify(movies))
+      setLoading(false)
     }
-    console.log(movies)
     setSearchTerm(localStorage.getItem("searchTerm"));
   }, [], [movies]);
 
@@ -40,7 +46,7 @@ const AdvancedResults = () => {
           <h1 className="box reviewsBox">Tearm Searched: {searchTerm}</h1>
           <div className="box">
             <div className="table">
-              {movies ? (
+              {movies && !loading ? (
                 movies.map((movie) => (
                   <div className="resultCard" key={movie.id}>
                     <img
@@ -58,7 +64,7 @@ const AdvancedResults = () => {
                   </div>
                 ))
               ) : (
-                <h1>Bruh</h1>
+                <h1>Loadings....</h1>
               )}
             </div>
           </div>

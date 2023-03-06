@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./HomePg.css";
 import background from "../Assets/background2.png";
-import axios from "axios";
 import { useHistory } from "react-router-dom"
 
 const HomePg = () => {
   let history = useHistory()
   const [input, setInput] = useState("");
+
   const handleSearchTermChange = (event) => {
     setInput(event.target.value);
   };
@@ -16,22 +16,13 @@ const HomePg = () => {
     history.push(process.env.PUBLIC_URL + "/advancedSearch")
   };
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=ba5d3eaad19db7b4083fc09da38c13d7&query=${input}`
-      )
-      .then((response) => {
-        localStorage.setItem("searchTerm", input);
-        localStorage.setItem("movies", JSON.stringify(response.data.results));
-        history.push(process.env.PUBLIC_URL + "/searchResults")
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    localStorage.setItem("searchTerm", input);
+    history.push(process.env.PUBLIC_URL + "/searchResults")
   };
+  
 
   return (
     <>
