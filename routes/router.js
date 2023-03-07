@@ -8,6 +8,7 @@ const config = require("./config");
 const pool = new sql.ConnectionPool(config);
 const auth = require("./auth");
 const axios = require("axios");
+const { request } = require("express");
 pool.connect((err) => {
   if (err) {
     console.error("Error connecting to database:", err);
@@ -23,28 +24,50 @@ router.get("/items/user", auth, (req, res) => {
 router.get("/items/admin/allUsers", auth, async (req, res) => {
   try {
     const user = req.user;
-    if (user.role !== "Admin") {
+    if (user.role == "User" || user.role == "user") {
       return res.status(401).json({
         message: "Unauthorized access",
       });
     }
 
-    const pool = await sql.connect(config);
-    const result = await pool.request().query("SELECT * FROM users");
+    console.log(req.query.page);
 
-    return res.status(200).json({
-      users: allUsers,
-      users: result.recordset,
-      message: `Welcome Admin ${user.lname}`,
+    const page = req.query.page || 1;
+    const itemsPerPage = 1000;
+    const startIndex = (page - 1) * itemsPerPage;
+
+    const pool = await sql.connect(config);
+    const countResult = await pool.request().query("SELECT COUNT(*) as count FROM users");
+    const count = countResult.recordset[0].count;
+    const result = await pool.request()
+      .query(`SELECT * FROM users ORDER BY ID OFFSET ${startIndex} ROWS FETCH NEXT ${itemsPerPage} ROWS ONLY`);
+    sql.close();
+
+    const users = result.recordset.map((user) => {
+      return {
+        ID: user.ID,
+        fname: user.fname,
+        lname: user.lname,
+        street: user.street,
+        city: user.city,
+        state: user.state,
+        zip_code: user.zip_code,
+        email: user.email,
+        phone: user.phone,
+        password: user.password,
+        role: user.role,
+      };
     });
+    res.send(users);
+
   } catch (error) {
     return res.status(500).json({
-      message: "An error occurred while fetching the users",
+      message: "An error occurred while fetching the users" + error,
     });
-  } finally {
-    sql.close();
   }
 });
+
+
 
 router.post("/items/login", async (req, res, next) => {
   const { email, password } = req.body;
@@ -127,11 +150,6 @@ router.post("/items/register", (req, res) => {
       }
     });
   });
-});
-
-router.delete("/items/deleteUser", function (req, res) {
-  // Add your code here
-  res.json({ success: "delete call succeed!", url: req.url });
 });
 
 router.post("/items/reviews", function (req, res) {
@@ -219,6 +237,33 @@ router.get("/items/getReviews", function (req, res) {
     });
   });
 });
+
+router.delete("/items/admin/deleteUser/:id", function (req, res) {
+  const userID = req.params.id;
+  sql.connect(config, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({
+        message: "An error occurred while connecting to the database",
+      });
+    }
+
+    const request = new sql.Request();
+    request.query(
+      `DELETE FROM users WHERE ID = ${userID}`,
+      function (err, result) {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({
+            message: "An error occurred while querying the database",
+          });
+        }
+        res.send(`User with ID ${userID} has been deleted`);
+      }
+    );
+  });
+});
+
 
 router.get("/items/getReviewsByID/:ID", function (req, res) {
   const ID = req.params.ID;
@@ -345,12 +390,38 @@ router.get("/items/genres", async (req, res) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(JSON.stringify(data.genres))
+    console.log(JSON.stringify(data.genres));
     res.json(data.genres);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");
   }
+});
+
+router.delete("/items/deleteReview/:id", function (req, res) {
+  const reviewId = req.params.id;
+  sql.connect(config, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({
+        message: "An error occurred while connecting to the database",
+      });
+    }
+
+    const request = new sql.Request();
+    request.query(
+      `DELETE FROM reviews WHERE id = ${reviewId}`,
+      function (err, result) {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({
+            message: "An error occurred while querying the database",
+          });
+        }
+        res.send(`Review with ID ${reviewId} has been deleted`);
+      }
+    );
+  });
 });
 
 module.exports = router;

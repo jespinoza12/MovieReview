@@ -4,6 +4,7 @@
   /* border: 1px solid #fff; */
   flex: 1;
 }
+
 .inner-col {
   flex: 1;
   flex-direction: row;
