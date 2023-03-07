@@ -272,7 +272,7 @@ router.get("/items/movie/:query/:page", async (req, res) => {
     console.log("Succesfull got movies");
   } catch (error) {
     console.error(error);
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error" + error);
   }
 });
 
