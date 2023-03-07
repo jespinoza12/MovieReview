@@ -86,18 +86,7 @@ const ReviewPg = () => {
     console.log(averageStars)
   }
 
-  // const getReviews = () => {
-  //   setLoading(true);
-  //   fetch("https://review-it.herokuapp.com/items/getReviews")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setLoading(true);
-  //       setReviews(data); // update the state variable with the response data
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching reviews: ", error);
-  //     });
-  // };
+ 
 
   
   const getReviews = () => {
