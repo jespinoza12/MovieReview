@@ -61,6 +61,7 @@ const Admin = () => {
         console.error("Error fetching users: ", error);
       });
   };
+  
   const deleteUser = (id) => {
     const config = {
       headers: {
