@@ -3,6 +3,7 @@ const router = express.Router();
 const sql = require("mssql");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fetch = require("node-fetch");
 const config = require("./config");
 const pool = new sql.ConnectionPool(config);
 const auth = require("./auth");
