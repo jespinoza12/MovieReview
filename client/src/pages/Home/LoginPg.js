@@ -31,7 +31,6 @@ const LoginPg = () => {
       ...user,
       [name]: value,
     });
-    console.log(user);
   };
 
   const login = () => {

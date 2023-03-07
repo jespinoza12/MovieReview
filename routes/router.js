@@ -30,7 +30,6 @@ router.get("/items/admin/allUsers", auth, async (req, res) => {
       });
     }
 
-    console.log(req.query.page);
 
     const page = req.query.page || 1;
     const itemsPerPage = 1000;
@@ -165,7 +164,6 @@ router.post("/items/reviews", auth, function (req, res) {
     const request = new sql.Request();
     request.input("userID", sql.Int, parseInt(userId));
     request.input("movieID", sql.Int, movieID);
-    console.log("userID: " + userId);
     request.query(
       "SELECT * FROM reviews WHERE userID = @userID AND movieID = @movieID",
       function (err, result) {
@@ -309,13 +307,11 @@ router.get("/items/movie/:query/:page", async (req, res) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=ba5d3eaad19db7b4083fc09da38c13d7&query=${query}&page=${page}`
     );
-    console.log("Response status: " + response.status);
     if (!response.ok) {
       throw new Error(`Network response was not ok ` + page + "" + query);
     }
     const movies = await response.json();
     res.json(movies.results);
-    console.log("Succesfull got movies");
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error" + error);
@@ -334,7 +330,6 @@ router.get("/items/actor/:fname/:lname", async (req, res) => {
     }
     const actor = await response.json();
 
-    console.log("Actor status: " + JSON.stringify(actor.results));
     res.json(actor.results);
   } catch (error) {
     console.error(error);
@@ -352,7 +347,6 @@ router.get("/items/actor/:id", async (req, res) => {
       throw new Error("Network response was not ok");
     }
     const actor = await response.json();
-    console.log("ID status: " + JSON.stringify(actor));
     res.json(actor);
   } catch (error) {
     console.error(error);
@@ -363,8 +357,6 @@ router.get("/items/actor/:id", async (req, res) => {
 router.get("/items/genre/:id/:page", async (req, res) => {
   const selectedGenre = req.params.id;
   const page = req.params.page;
-  console.log(page);
-  console.log(selectedGenre);
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=ba5d3eaad19db7b4083fc09da38c13d7&with_genres=${selectedGenre}&page=${page}`
@@ -373,7 +365,6 @@ router.get("/items/genre/:id/:page", async (req, res) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log("Genre status: " + JSON.stringify(data.results));
     res.json(data.results);
   } catch (error) {
     console.error(error);
@@ -390,7 +381,6 @@ router.get("/items/genres", async (req, res) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(JSON.stringify(data.genres));
     res.json(data.genres);
   } catch (error) {
     console.error(error);

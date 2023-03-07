@@ -28,7 +28,6 @@ const AdvSrchPg = () => {
 
   function handleGenreChange(event) {
     setSelectedGenre(JSON.parse(event.target.value));
-    console.log(selectedGenre);
   }
 
   function handleFnameChange(event) {
@@ -43,7 +42,6 @@ const AdvSrchPg = () => {
     event.preventDefault();
     axios.get(`https://review-it.herokuapp.com/items/actor/${fname}/${lname}`)
     .then((response) => {
-        console.log(response);
         localStorage.setItem("searchTerm", `${fname} ${lname}`);
         localStorage.setItem("actorId", response.data[0].id);
         searchForCredits();
@@ -56,7 +54,6 @@ const AdvSrchPg = () => {
   function searchForCredits() {
     axios.get(`https://review-it.herokuapp.com/items/actor/${localStorage.getItem("actorId")}`)
     .then((response) => {
-        console.log(response);
         localStorage.setItem("actorSearchRes", JSON.stringify(response.data.combined_credits.crew));
         localStorage.removeItem("genreSearchRes");
         history.push(process.env.PUBLIC_URL + "/advancedResults")

@@ -12,12 +12,10 @@ const AdvancedResults = () => {
     if (localStorage.getItem("genreSearchRes") == null) {
       setLoading(true)
       setMovies(JSON.parse(localStorage.getItem("actorSearchRes")))
-      console.log("Movies: " + JSON.stringify(movies))
       setLoading(false)
     }else if (localStorage.getItem("actorSearchRes") == null) {
       setLoading(true)
       setMovies(JSON.parse(localStorage.getItem("genreSearchRes")))
-      console.log("Genre Movies: " + JSON.stringify(movies))
       setLoading(false)
     }
     setSearchTerm(localStorage.getItem("searchTerm"));

@@ -18,12 +18,10 @@ const Admin = () => {
 
   useEffect(() => {
     setLoading1(false);
-    console.log(reviews);
   }, [reviews]);
 
   useEffect(() => {
     setLoading(false);
-    console.log(users);
   }, [users]);
 
   const getReviews = () => {
@@ -40,8 +38,6 @@ const Admin = () => {
 
   const getUsers = () => {
     setLoading(true);
-    console.log(localStorage.getItem("token"));
-    console.log("page: " + page);
     fetch(`https://review-it.herokuapp.com/items/admin/allUsers?page=${page}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -61,7 +57,7 @@ const Admin = () => {
         console.error("Error fetching users: ", error);
       });
   };
-  
+
   const deleteUser = (id) => {
     const config = {
       headers: {
@@ -71,7 +67,6 @@ const Admin = () => {
     axios
       .delete(`https://review-it.herokuapp.com/items/admin/deleteUser/${id}`, config)
       .then((response) => {
-        console.log(response.data);
         getUsers();
       })
       .catch((error) => {
@@ -83,7 +78,6 @@ const Admin = () => {
     axios
       .delete(`https://review-it.herokuapp.com/items/deleteReview/${id}`)
       .then((response) => {
-        console.log(response.data);
         getReviews();
       })
       .catch((error) => {

@@ -32,8 +32,6 @@ const Navbar = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
-        console.log(response.data);
-        console.log(response.data.message);
         setUser(response.data.user);
       })
       .catch((error) => {

@@ -14,20 +14,15 @@ const ReviewPg = () => {
   useEffect(() => {
     setClickedMovie(JSON.parse(localStorage.getItem("clickedMovie")));
     getReviews();
-    console.log(clickedMovie);
-    console.log(reviews);
   }, []);
 
   useEffect(() => {
-    console.log(reviews);
     setLoading(false);
     calculateAverageStars();
-    console.log(stars)
   }, [reviews]);
 
 
   useEffect(() => {
-    console.log(clickedMovie);
     getReviews();
     calculateAverageStars();
   }, [clickedMovie]);
@@ -35,12 +30,10 @@ const ReviewPg = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(review);
     addReview();
     getReviews();
   }
 
-  console.log(clickedMovie);
 
   function addReview() {
     const config = {
@@ -51,11 +44,9 @@ const ReviewPg = () => {
     axios
       .post("https://review-it.herokuapp.com/items/reviews", review, config)
       .then((res) => {
-        console.log(res.data);
         getReviews();
       })
       .catch((error) => {
-        console.log(error);
       });
   }
 
@@ -76,19 +67,15 @@ const ReviewPg = () => {
       [name]: value,
       [movieID]: clickedMovie.id,
     });
-
-    console.log(review);
   };
 
   const calculateAverageStars = () => {
     let totalStars = 0;
     for (let i = 0; i < reviews.length; i++) {
       totalStars += reviews[i].stars;
-      console.log(reviews[i].stars)
     }
     const averageStars = totalStars / reviews.length;
     setStars(averageStars);
-    console.log(averageStars)
   }
 
  
