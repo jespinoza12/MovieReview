@@ -14,7 +14,6 @@ const ReviewPg = () => {
   useEffect(() => {
     setClickedMovie(JSON.parse(localStorage.getItem("clickedMovie")));
     getReviews();
-    calculateAverageStars();
     console.log(clickedMovie);
     console.log(reviews);
   }, []);
@@ -22,12 +21,15 @@ const ReviewPg = () => {
   useEffect(() => {
     console.log(reviews);
     setLoading(false);
+    calculateAverageStars();
+    console.log(stars)
   }, [reviews]);
 
 
   useEffect(() => {
     console.log(clickedMovie);
     getReviews();
+    calculateAverageStars();
   }, [clickedMovie]);
 
 
@@ -37,6 +39,7 @@ const ReviewPg = () => {
     addReview();
     getReviews();
   }
+
   console.log(clickedMovie);
 
   function addReview() {
@@ -72,14 +75,15 @@ const ReviewPg = () => {
     console.log(review);
   };
 
-  function calculateAverageStars() {
+  const calculateAverageStars = () => {
     let totalStars = 0;
     for (let i = 0; i < reviews.length; i++) {
-      console.log(reviews[i].stars)
       totalStars += reviews[i].stars;
+      console.log(reviews[i].stars)
     }
     const averageStars = totalStars / reviews.length;
     setStars(averageStars);
+    console.log(averageStars)
   }
 
   // const getReviews = () => {
@@ -102,6 +106,7 @@ const ReviewPg = () => {
       .then((data) => {
         setLoading(true);
         setReviews(data); 
+        calculateAverageStars();
       })
       .catch((error) => {
         console.error("Error fetching reviews: ", error);
@@ -124,7 +129,7 @@ const ReviewPg = () => {
                 </div>
                 <div className="box">
                   <h1>{clickedMovie.title}</h1>
-                  <h3>StarRating: {stars.toString()}/5</h3>
+                  <h3>StarRating: {stars}/5</h3>
                   <h4 id="movieStars">{clickedMovie.release_date}</h4>
                 </div>
               </div>
@@ -175,6 +180,7 @@ const ReviewPg = () => {
                   onChange={handleChange}
                   id="fnameText"
                   type="text"
+                  maxLength={10}
                 />
                 <br />
                 <label>Last name:</label>
@@ -185,6 +191,7 @@ const ReviewPg = () => {
                   name="lname"
                   value={review.lname}
                   onChange={handleChange}
+                  maxLength={10}
                 />
                 <br />
                 <label>Review:</label>
@@ -195,6 +202,7 @@ const ReviewPg = () => {
                   name="userRev"
                   value={review.userRev}
                   onChange={handleChange}
+                  maxLength={100}
                 />
                 <br />
                 <div class="rate">
