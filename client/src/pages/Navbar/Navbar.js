@@ -1,18 +1,22 @@
 import "./Navbar.css";
 import logo from "../Assets/logo.png";
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const Navbar = () => {
-  let history = useHistory()
+  let history = useHistory();
 
   const refreshPage = () => {
-    window.location.reload();
+    history.push(process.env.PUBLIC_URL + "/");
+  };
+
+  const redirectAdmin = () => {
+    history.push(process.env.PUBLIC_URL + "/Admin");
   };
 
   const login = () => {
-    history.push(process.env.PUBLIC_URL + "/login")
+    history.push(process.env.PUBLIC_URL + "/login");
   };
 
   const logout = () => {
@@ -21,7 +25,7 @@ const Navbar = () => {
   };
 
   const [user, setUser] = useState(null);
-
+  const [admin, setIsAdmin] = useState(false);
   useEffect(() => {
     axios
       .get("https://review-it.herokuapp.com/items/user", {
@@ -31,11 +35,19 @@ const Navbar = () => {
         console.log(response.data);
         console.log(response.data.message);
         setUser(response.data.user);
-        
       })
       .catch((error) => {
         console.log(error);
       });
+
+    if (
+      localStorage.getItem("role") === "Admin" ||
+      localStorage.getItem("role") === "admin"
+    ) {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
   }, []);
 
   return (
@@ -55,6 +67,13 @@ const Navbar = () => {
           <span>
             {"Welcome: " + user.user.fname + " " + user.user.lname}
             <button onClick={logout}>Logout</button>
+            {admin ? (
+              <span>
+                <button onClick={redirectAdmin}>Admin Page</button>
+              </span>
+            ) : (
+              <div></div>
+            )}
           </span>
         ) : (
           <span onClick={login}>Login</span>
