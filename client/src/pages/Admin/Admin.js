@@ -42,7 +42,7 @@ const Admin = () => {
     setLoading(true);
     console.log(localStorage.getItem("token"));
     console.log("page: " + page);
-    fetch(`http://localhost:9002/items/admin/allUsers?page=${page}`, {
+    fetch(`https://review-it.herokuapp.com/items/admin/allUsers?page=${page}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -68,7 +68,7 @@ const Admin = () => {
       },
     };
     axios
-      .delete(`http://localhost:9002/items/admin/deleteUser/${id}`, config)
+      .delete(`https://review-it.herokuapp.com/items/admin/deleteUser/${id}`, config)
       .then((response) => {
         console.log(response.data);
         getUsers();
@@ -80,7 +80,7 @@ const Admin = () => {
 
   const deleteReview = (id) => {
     axios
-      .delete(`http://localhost:9002/items/deleteReview/${id}`)
+      .delete(`https://review-it.herokuapp.com/items/deleteReview/${id}`)
       .then((response) => {
         console.log(response.data);
         getReviews();

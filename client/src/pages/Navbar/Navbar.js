@@ -65,7 +65,7 @@ const Navbar = () => {
       <span className="navItem navItemInfo">
         {user ? (
           <span>
-            {"Welcome: " + user.user.fname + " " + user.user.lname}
+            {"Welcome: " + user.user.fname + " " + user.user.lname + " "}
             <button onClick={logout}>Logout</button>
             {admin ? (
               <span>
