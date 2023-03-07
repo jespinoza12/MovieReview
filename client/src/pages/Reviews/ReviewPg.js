@@ -43,8 +43,13 @@ const ReviewPg = () => {
   console.log(clickedMovie);
 
   function addReview() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
     axios
-      .post("https://review-it.herokuapp.com/items/reviews", review)
+      .post("https://review-it.herokuapp.com/items/reviews", review, config)
       .then((res) => {
         console.log(res.data);
         getReviews();

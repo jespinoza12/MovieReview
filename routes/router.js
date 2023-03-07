@@ -152,7 +152,7 @@ router.post("/items/register", (req, res) => {
   });
 });
 
-router.post("/items/reviews", function (req, res) {
+router.post("/items/reviews", auth, function (req, res) {
   const { userId, movieID, userRev, fname, lname, stars } = req.body;
   sql.connect(config, function (err) {
     if (err) {
