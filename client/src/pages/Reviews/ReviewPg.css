@@ -15,11 +15,15 @@ label {
   width: 100px;
   display: inline-block;
 }
+
 .form{
   padding: 0px;
   margin: 0px;
   min-height: 800px;
 }
+
+
+
 #reviewText, #usernameText{
   width: 265px;
   max-width: 100%;
@@ -27,6 +31,7 @@ label {
   background-color: #bbb1b1;
   border-style: none;
 }
+
 #reviewText {
   min-height: 550px;
 }
@@ -95,7 +100,7 @@ label {
   background-color: #ffc31f;
 }
 .table {
-  flex-direction: row;
+  flex-direction: column;
   flex: 1;
   display: flex;
   justify-content: space-between;
